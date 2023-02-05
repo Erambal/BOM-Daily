@@ -1,0 +1,88 @@
+GET http://localhost:8080/contacts 
+###
+GET http://localhost:8080/contacts/63c311f7ec0c5bc0a4f321d6
+###
+GET http://localhost:8080/contacts/63c311f7ec0c5bc0a4f321d7
+###
+GET http://localhost:8080/contacts/63c311f7ec0c5bc0a4f321d8
+
+// LOCALHOST
+### Get all contacts
+GET http://localhost:8080/contacts
+
+
+### Get contact by id
+GET http://localhost:8080/contacts/622023f642f9ab4cd6e060b3
+
+
+### Create contact
+POST http://localhost:8080/contacts HTTP/1.1
+content-type: application/json
+
+{
+    "firstName":"Ashley",
+    "lastName":"Weaver",
+    "email":"aWeaver@test.com",
+    "favoriteColor":"Brown",
+    "birthday":"06/19/2000"
+}
+
+
+### PUT contact
+PUT http://localhost:8080/contacts/63cc3beb0e4af0359ead35ae HTTP/1.1
+content-type: application/json
+
+{
+    "firstName":"Sarah",
+    "lastName":"Birch",
+    "email":"test@gmail.com",
+    "favoriteColor":"Green",
+    "birthday":"12/12/20"
+}
+### DELETE contact
+DELETE http://localhost:8080/contacts/63cc3beb0e4af0359ead35ae HTTP/1.1
+
+GET https://week-4-personal.onrender.com/contacts 
+###
+GET https://week-4-personal.onrender.com/contacts/63c311f7ec0c5bc0a4f321d6
+###
+GET https://week-4-personal.onrender.com/contacts/63c311f7ec0c5bc0a4f321d7
+###
+GET https://week-4-personal.onrender.com/contacts/63c311f7ec0c5bc0a4f321d8
+
+// LOCALHOST
+### Get all contacts
+GET https://week-4-personal.onrender.com/contacts
+
+
+### Get contact by id
+GET https://week-4-personal.onrender.com/contacts/622023f642f9ab4cd6e060b3
+
+
+### Create contact
+POST https://week-4-personal.onrender.com/contacts
+content-type: application/json
+
+{
+    "firstName":"Ashley",
+    "lastName":"Weaver",
+    "email":"aWeaver@test.com",
+    "favoriteColor":"Brown",
+    "birthday":"06/19/2000"
+}
+
+
+### PUT contact
+PUT https://week-4-personal.onrender.com/contacts/63cc3beb0e4af0359ead35ae
+content-type: application/json
+
+{
+    "firstName":"Sarah",
+    "lastName":"Birch",
+    "email":"test@gmail.com",
+    "favoriteColor":"Green",
+    "birthday":"12/12/20"
+}
+### DELETE contact
+DELETE https://week-4-personal.onrender.com/contacts/63cc3beb0e4af0359ead35ae
+
