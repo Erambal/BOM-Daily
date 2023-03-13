@@ -35,7 +35,7 @@ const postUser = async (req, res, next) => {
         img: req.body.img
     };
 
-    const result = await dbConnect.getDb().db('BOM').collection('users').insterOne(newUser);
+    const result = await dbConnect.getDb().db('BOM').collection('users').insertOne(newUser);
     if (result.acknowledged) {
         res.status(200).json(result);
     } else {
