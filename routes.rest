@@ -1,22 +1,22 @@
-GET http://localhost:8080/contacts 
+GET http://localhost:8080/user
 ###
-GET http://localhost:8080/contacts/63c311f7ec0c5bc0a4f321d6
+GET http://localhost:8080/user/63c311f7ec0c5bc0a4f321d6
 ###
-GET http://localhost:8080/contacts/63c311f7ec0c5bc0a4f321d7
+GET http://localhost:8080/user/63c311f7ec0c5bc0a4f321d7
 ###
-GET http://localhost:8080/contacts/63c311f7ec0c5bc0a4f321d8
+GET http://localhost:8080/user/63c311f7ec0c5bc0a4f321d8
 
 // LOCALHOST
 ### Get all contacts
-GET http://localhost:8080/contacts
+GET http://localhost:8080/user
 
 
 ### Get contact by id
-GET http://localhost:8080/contacts/622023f642f9ab4cd6e060b3
+GET http://localhost:8080/user/622023f642f9ab4cd6e060b3
 
 
 ### Create contact
-POST http://localhost:8080/contacts HTTP/1.1
+POST http://localhost:8080/user HTTP/1.1
 content-type: application/json
 
 {
@@ -29,7 +29,7 @@ content-type: application/json
 
 
 ### PUT contact
-PUT http://localhost:8080/contacts/63cc3beb0e4af0359ead35ae HTTP/1.1
+PUT http://localhost:8080/user/63cc3beb0e4af0359ead35ae HTTP/1.1
 content-type: application/json
 
 {
