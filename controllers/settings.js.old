@@ -2,8 +2,6 @@ const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
 
 const getAll = async (req, res) => {
-    // #swagger.tags = ['Settings']
-
     try {
         const result = await mongodb.getDb().db().collection('settings').find();
         result.toArray().then((lists) => {
@@ -18,8 +16,6 @@ const getAll = async (req, res) => {
 };
 
 const getSingle = async (req, res) => {
-    // #swagger.tags = ['Settings']
-
     try {
         const userId = new ObjectId(req.params.id);
         const result = await mongodb.getDb().db().collection('settings').find({
@@ -35,8 +31,6 @@ const getSingle = async (req, res) => {
 };
 
 const createSetting = async (req, res) => {
-    // #swagger.tags = ['Settings']
-
     try {
         const setting = {
             color: req.body.color,
@@ -57,8 +51,6 @@ const createSetting = async (req, res) => {
 };
 
 const updateSetting = async (req, res) => {
-    // #swagger.tags = ['Settings']
-
     try {
         const userId = new ObjectId(req.params.id);
         // be aware of updateOne if you only want to update specific fields
@@ -88,8 +80,6 @@ const updateSetting = async (req, res) => {
 };
 
 const deleteSetting = async (req, res) => {
-    // #swagger.tags = ['Settings']
-
     try {
         const userId = new ObjectId(req.params.id);
         const response = await mongodb

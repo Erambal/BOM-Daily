@@ -1,25 +1,146 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "My API",
-    "description": "Temple API",
+    "title": "Book of Mormon Daily Scripture API",
+    "description": "Provides endpoints for retrieving daily scriptures for                   users based on user preferences. Also provides admin                   functionality for managing users and settings.",
     "version": "1.0.0"
   },
-  "host": "week-4-personal.onrender.com",
+  "host": "rrcox-cse341.onrender.com",
   "basePath": "/",
   "schemes": [
+    "http",
     "https"
   ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
   "paths": {
-    "/api-docs": {
+    "/user/{id}": {
       "get": {
-        "description": "",
+        "tags": [
+          "User"
+        ],
+        "description": "Gets a single user by id. Admin user can get any user.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "description": "Updates a user. Admin user can update any user.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      },
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "description": "Deletes a single user by id. Admin user can delete any user.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/user/": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "description": "Creates a user. Admin user can create any user.",
         "parameters": [],
         "responses": {}
       }
     },
-    "/contacts/": {
+    "/scripture/{id}": {
       "get": {
+        "tags": [
+          "Scripture"
+        ],
+        "description": "Gets a single scripture by id.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      },
+      "put": {
+        "tags": [
+          "Scripture"
+        ],
+        "description": "Updates a scripture. Accessible only by admin user.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      },
+      "delete": {
+        "tags": [
+          "Scripture"
+        ],
+        "description": "Deletes a single scripture by id. Accessible only by admin user.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/scripture/": {
+      "post": {
+        "tags": [
+          "Scripture"
+        ],
+        "description": "Creates a scripture. Accessible only by admin user.",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/settings/": {
+      "get": {
+        "tags": [
+          "Settings"
+        ],
         "description": "",
         "produces": [
           "application/json"
@@ -35,6 +156,9 @@
         }
       },
       "post": {
+        "tags": [
+          "Settings"
+        ],
         "description": "",
         "parameters": [
           {
@@ -43,19 +167,19 @@
             "schema": {
               "type": "object",
               "properties": {
-                "firstName": {
+                "color": {
                   "example": "any"
                 },
-                "lastName": {
+                "fontSize": {
                   "example": "any"
                 },
-                "email": {
+                "timeZone": {
                   "example": "any"
                 },
-                "favoriteColor": {
+                "topics": {
                   "example": "any"
                 },
-                "birthday": {
+                "userId": {
                   "example": "any"
                 }
               }
@@ -72,8 +196,11 @@
         }
       }
     },
-    "/contacts/{id}": {
+    "/settings/{id}": {
       "get": {
+        "tags": [
+          "Settings"
+        ],
         "description": "",
         "produces": [
           "application/json"
@@ -96,6 +223,9 @@
         }
       },
       "put": {
+        "tags": [
+          "Settings"
+        ],
         "description": "",
         "parameters": [
           {
@@ -110,19 +240,19 @@
             "schema": {
               "type": "object",
               "properties": {
-                "firstName": {
+                "color": {
                   "example": "any"
                 },
-                "lastName": {
+                "fontSize": {
                   "example": "any"
                 },
-                "email": {
+                "timeZone": {
                   "example": "any"
                 },
-                "favoriteColor": {
+                "topics": {
                   "example": "any"
                 },
-                "birthday": {
+                "userId": {
                   "example": "any"
                 }
               }
@@ -139,6 +269,9 @@
         }
       },
       "delete": {
+        "tags": [
+          "Settings"
+        ],
         "description": "",
         "parameters": [
           {
@@ -154,383 +287,162 @@
           },
           "500": {
             "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/user/": {
-      "get": {
-        "description": "",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      },
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "username": {
-                  "example": "any"
-                },
-                "fName": {
-                  "example": "any"
-                },
-                "lName": {
-                  "example": "any"
-                },
-                "street": {
-                  "example": "any"
-                },
-                "city": {
-                  "example": "any"
-                },
-                "state": {
-                  "example": "any"
-                },
-                "zipcode": {
-                  "example": "any"
-                },
-                "email": {
-                  "example": "any"
-                },
-                "phone": {
-                  "example": "any"
-                },
-                "img": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "put": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "username": {
-                  "example": "any"
-                },
-                "fName": {
-                  "example": "any"
-                },
-                "lName": {
-                  "example": "any"
-                },
-                "street": {
-                  "example": "any"
-                },
-                "city": {
-                  "example": "any"
-                },
-                "state": {
-                  "example": "any"
-                },
-                "zipcode": {
-                  "example": "any"
-                },
-                "email": {
-                  "example": "any"
-                },
-                "phone": {
-                  "example": "any"
-                },
-                "img": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "501": {
-            "description": "Not Implemented"
-          }
-        }
-      }
-    },
-    "/user/{id}": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "202": {
-            "description": "Accepted"
-          },
-          "502": {
-            "description": "Bad Gateway"
-          }
-        }
-      },
-      "put": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "username": {
-                  "example": "any"
-                },
-                "fName": {
-                  "example": "any"
-                },
-                "lName": {
-                  "example": "any"
-                },
-                "street": {
-                  "example": "any"
-                },
-                "city": {
-                  "example": "any"
-                },
-                "state": {
-                  "example": "any"
-                },
-                "zipcode": {
-                  "example": "any"
-                },
-                "email": {
-                  "example": "any"
-                },
-                "phone": {
-                  "example": "any"
-                },
-                "img": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "501": {
-            "description": "Not Implemented"
-          }
-        }
-      },
-      "delete": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "203": {
-            "description": "Non-Authoritative Information"
-          },
-          "503": {
-            "description": "Service Unavailable"
-          }
-        }
-      }
-    },
-    "/user/userprofile/{username}": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "username",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "504": {
-            "description": "Gateway Timeout"
-          }
-        }
-      },
-      "put": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "username",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "fName": {
-                  "example": "any"
-                },
-                "lName": {
-                  "example": "any"
-                },
-                "street": {
-                  "example": "any"
-                },
-                "city": {
-                  "example": "any"
-                },
-                "state": {
-                  "example": "any"
-                },
-                "zipcode": {
-                  "example": "any"
-                },
-                "email": {
-                  "example": "any"
-                },
-                "phone": {
-                  "example": "any"
-                },
-                "img": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "205": {
-            "description": "Reset Content"
-          },
-          "505": {
-            "description": "HTTP Version Not Supported"
-          }
-        }
-      },
-      "delete": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "username",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "206": {
-            "description": "Partial Content"
-          },
-          "506": {
-            "description": "Variant Also Negotiates"
-          }
-        }
-      }
-    },
-    "/user/userprofile/{id}/uploadImage": {
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "username": {
-                  "example": "any"
-                },
-                "fName": {
-                  "example": "any"
-                },
-                "lName": {
-                  "example": "any"
-                },
-                "street": {
-                  "example": "any"
-                },
-                "city": {
-                  "example": "any"
-                },
-                "state": {
-                  "example": "any"
-                },
-                "zipcode": {
-                  "example": "any"
-                },
-                "email": {
-                  "example": "any"
-                },
-                "phone": {
-                  "example": "any"
-                },
-                "img": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "501": {
-            "description": "Not Implemented"
           }
         }
       }
     }
-  }
+  },
+  "definitions": {
+    "user": {
+      "type": "object",
+      "properties": {
+        "admin": {
+          "type": "string",
+          "example": "false"
+        },
+        "firstName": {
+          "type": "string",
+          "example": "John"
+        },
+        "lastName": {
+          "type": "string",
+          "example": "Doe"
+        },
+        "userName": {
+          "type": "string",
+          "example": "john.doe@email.com"
+        },
+        "password": {
+          "type": "string",
+          "example": "mypassword"
+        },
+        "profileImage": {
+          "type": "string",
+          "example": "https://picsum.photos/200"
+        },
+        "favorites": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "reference": {
+                "type": "string",
+                "example": "1 Nephi 1:1"
+              },
+              "text": {
+                "type": "string",
+                "example": "I, Nephi, ..."
+              },
+              "link": {
+                "type": "string",
+                "example": "https://www.churchofjesuschrist.org/study/scriptures/bofm/1-ne/1?lang=eng"
+              },
+              "image": {
+                "type": "string",
+                "example": "https://www.churchofjesuschrist.org/search?lang=eng&type=image&query=nephi"
+              },
+              "topic": {
+                "type": "array",
+                "example": [
+                  "Parents"
+                ],
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "settings": {
+          "type": "object",
+          "properties": {
+            "font": {
+              "type": "string",
+              "example": "Roboto"
+            },
+            "color": {
+              "type": "string",
+              "example": "#2196F3"
+            },
+            "topic": {
+              "type": "array",
+              "example": [
+                "Parents",
+                "Prayer"
+              ],
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "scripture": {
+      "type": "object",
+      "properties": {
+        "reference": {
+          "type": "string",
+          "example": "1 Nephi 1:1"
+        },
+        "text": {
+          "type": "string",
+          "example": "I, Nephi, ..."
+        },
+        "link": {
+          "type": "string",
+          "example": "https://www.churchofjesuschrist.org/study/scriptures/bofm/1-ne/1?lang=eng"
+        },
+        "image": {
+          "type": "string",
+          "example": "https://www.churchofjesuschrist.org/search?lang=eng&type=image&query=nephi"
+        },
+        "topic": {
+          "type": "array",
+          "example": [
+            "Parents"
+          ],
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "settings": {
+      "type": "object",
+      "properties": {
+        "font": {
+          "type": "array",
+          "example": [
+            "Roboto",
+            "Lato"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "color": {
+          "type": "array",
+          "example": [
+            "#2196F3",
+            "#ffffff"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "topic": {
+          "type": "array",
+          "example": [
+            "Parents",
+            "Prayer"
+          ],
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "basepath": "/"
 }
