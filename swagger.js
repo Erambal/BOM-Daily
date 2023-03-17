@@ -7,7 +7,7 @@ const doc = {
                   users based on user preferences. Also provides admin \
                   functionality for managing users and settings.',
   },
-  host: 'rrcox-cse341.onrender.com',
+  host: 'https://bom-daily-1alq.onrender.com',
   basepath: "/",
   consumes: ['application/json'],
   produces: ['application/json'],
