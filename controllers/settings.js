@@ -1,9 +1,9 @@
 const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
 
-const getAll = async (req, res) => {
-    // #swagger.tags = ['Settings']
+const getCollection = () => client.getDb().db().collection('settings');
 
+const getAll = async (req, res) => {
     try {
         const result = await mongodb.getDb().db().collection('settings').find();
         result.toArray().then((lists) => {
@@ -18,32 +18,29 @@ const getAll = async (req, res) => {
 };
 
 const getSingle = async (req, res) => {
-    // #swagger.tags = ['Settings']
-
     try {
-        const userId = new ObjectId(req.params.id);
+        const settingId = new ObjectId(req.params.id);
         const result = await mongodb.getDb().db().collection('settings').find({
-            _id: userId
+            _id: settingId
         });
         result.toArray().then((lists) => {
             res.setHeader('Content-Type', 'application/json');
             res.status(200).json(lists[0]);
         });
     } catch (err) {
+        console.log(err);
         res.status(500).json(err);
     }
 };
 
 const createSetting = async (req, res) => {
-    // #swagger.tags = ['Settings']
-
     try {
         const setting = {
             color: req.body.color,
             fontSize: req.body.fontSize,
             timeZone: req.body.timeZone,
             topics: req.body.topics,
-            userId: req.body.userId
+            settingId: req.body.settingId
         };
         const response = await mongodb.getDb().db().collection('settings').insertOne(setting);
         if (response.acknowledged) {
@@ -57,24 +54,22 @@ const createSetting = async (req, res) => {
 };
 
 const updateSetting = async (req, res) => {
-    // #swagger.tags = ['Settings']
-
     try {
-        const userId = new ObjectId(req.params.id);
+        const settingId = new ObjectId(req.params.id);
         // be aware of updateOne if you only want to update specific fields
         const setting = {
             color: req.body.color,
             fontSize: req.body.fontSize,
             timeZone: req.body.timeZone,
             topics: req.body.topics,
-            userId: req.body.userId
+            settingId: req.body.settingId
         };
         const response = await mongodb
             .getDb()
             .db()
             .collection('settings')
             .replaceOne({
-                _id: userId
+                _id: settingId
             }, setting);
         console.log(response);
         if (response.modifiedCount > 0) {
@@ -88,16 +83,14 @@ const updateSetting = async (req, res) => {
 };
 
 const deleteSetting = async (req, res) => {
-    // #swagger.tags = ['Settings']
-
     try {
-        const userId = new ObjectId(req.params.id);
+        const settingId = new ObjectId(req.params.id);
         const response = await mongodb
             .getDb()
             .db()
             .collection('settings')
             .remove({
-                _id: userId
+                _id: settingId
             }, true);
         console.log(response);
         if (response.deletedCount > 0) {
@@ -113,6 +106,7 @@ const deleteSetting = async (req, res) => {
 module.exports = {
     getAll,
     getSingle,
+    getSingleByName,
     createSetting,
     updateSetting,
     deleteSetting
