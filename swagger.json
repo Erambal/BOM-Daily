@@ -5,10 +5,9 @@
     "description": "Provides endpoints for retrieving daily scriptures for                   users based on user preferences. Also provides admin                   functionality for managing users and settings.",
     "version": "1.0.0"
   },
-  "host": "https://bom-daily-1alq.onrender.com",
+  "host": "bom-daily-1alq.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http",
     "https"
   ],
   "consumes": [

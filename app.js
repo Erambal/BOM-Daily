@@ -14,6 +14,7 @@ const swaggerDocument = require('./swagger.json');
 
 app
     .use(express.json())
+    .use(cors())
     .use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
     .use((req, res, next) => {
         res.setHeader('Access-Control-Allow-Origin', '*');
@@ -25,7 +26,6 @@ app
         res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
         next();
     })
-    .use(cors())
     .use('/', require('./routes'));
 
 const start = async () => {
