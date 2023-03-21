@@ -8,7 +8,9 @@ const ObjectId = require('mongodb').ObjectId;
 //----------------------------------- User
 // -------------------------------------------getAllUsers - Return all Users Collection
 const getAllUsers = async (req, res, next) => {
-    const result = await dbConnect.getDb().db('BOM').collection('users').find();
+     // #swagger.tags = ['User']
+//     // #swagger.description = 'Gets users listed in an array of user IDs. Accessible only by admin user'
+    const result = await dbConnect.getDb().db('cse341').collection('user').find();
 
     result.toArray((err, users) => {
         if(err) {
@@ -22,6 +24,8 @@ const getAllUsers = async (req, res, next) => {
 // -------------------------------------------postUser - Add individual user to Users collection
 const postUser = async (req, res, next) => {
     const newUser = {
+    // #swagger.tags = ['User']
+    // #swagger.description = 'Creates a user. Admin user can create any user.'
         //THIS IS A PLACEHOLDER, WE NEED TO UPDATE THIS
         username: req.body.username,
         fname: req.body.fName,
@@ -32,10 +36,13 @@ const postUser = async (req, res, next) => {
         zipcode: req.body.zipcode,
         email: req.body.email,
         phone: req.body.phone,
-        img: req.body.img
+        img: req.body.img,
+        setting: {
+            
+        }
     };
 
-    const result = await dbConnect.getDb().db('BOM').collection('users').insertOne(newUser);
+    const result = await dbConnect.getDb().db('cse341').collection('user').insertOne(newUser);
     if (result.acknowledged) {
         res.status(200).json(result);
     } else {
@@ -45,6 +52,8 @@ const postUser = async (req, res, next) => {
 }
 // -------------------------------------------putUser - Update individual user by their ID
 const putUser = async (req, res, next) => {
+    // #swagger.tags = ['User']
+    // #swagger.description = 'Updates a user. Admin user can update any user.'
     const id = new ObjectId(req.params.id)
     const updateUser = {
         //THIS IS A PLACEHOLDER, WE NEED TO UPDATE THIS
@@ -57,10 +66,14 @@ const putUser = async (req, res, next) => {
         zipcode: req.body.zipcode,
         email: req.body.email,
         phone: req.body.phone,
-        img: req.body.img
+        img: req.body.img,
+        admin: req.body.admin,
+        setting: [
+
+        ]
     };
 
-    const result = await dbConnect.getDb().db('BOM').collection('users').replaceOne({_id: id}, updateUser);
+    const result = await dbConnect.getDb().db('cse341').collection('user').replaceOne({_id: id}, updateUser);
     if (result.acknowledged) {
         res.status(201).json(result);
     } else {
@@ -71,9 +84,12 @@ const putUser = async (req, res, next) => {
 
 // -------------------------------------------getUserId - Pull a specific user by their ID
 const getUserId = async (req, res, next) => {
+    // #swagger.tags = ['User']
+    // #swagger.description = 'Gets a single user by id. Admin user can get any user.'
+
     const id = new ObjectId(req.params.id);
     
-    const result = await dbConnect.getDb().db('BOM').collection('users').findOne(id);
+    const result = await dbConnect.getDb().db('cse341').collection('user').findOne(id);
     if (result.acknowledged) {
         res.status(202).json(result);
     } else {
@@ -82,10 +98,12 @@ const getUserId = async (req, res, next) => {
 
 }
 
-// deleteUserId - Delete individual user by ID
+// -------------------------------------------deleteUserId - Delete individual user by ID
 const deleteUserId = async (req, res, next) => {
+    // #swagger.tags = ['User']
+    // #swagger.description = 'Deletes users listed in an array of user IDs. Accessible only by admin user.'
     const id = new ObjectId(req.params.id);
-    const result = await dbConnect.getDb().db('BOM').collection('users').deleteOne(id);
+    const result = await dbConnect.getDb().db('cse341').collection('user').deleteOne(id);
 
     if (result.acknowledged) {
         res.status(203).json(result);
@@ -95,11 +113,13 @@ const deleteUserId = async (req, res, next) => {
     
 }
 
-// getUsername
+// -------------------------------------------getUsername
 const getUsername = async (req, res, next) => {
+    // #swagger.tags = ['UserName']
+    // #swagger.description = 'Gets usernames listed in an array of user profiles.'
     const username = new ObjectId(req.params.username);
 
-    const result = await dbConnect.getDb.db('BOM').collection('users').findOne(username);
+    const result = await dbConnect.getDb.db('cse341').collection('user').findOne(username);
     console.log(result);
 
     if (result.acknowledged) {
@@ -112,6 +132,9 @@ const getUsername = async (req, res, next) => {
 
 // putUsername
 const putUsername = async (req, res, next) => {
+    // #swagger.tags = ['Username']
+    // #swagger.description = 'Update a users Username.'
+
     const id = new ObjectId(req.params.id);
     const updateUsername = new ObjectId(req.params.username);
     const updateUser = {
@@ -128,7 +151,7 @@ const putUsername = async (req, res, next) => {
         img: req.body.img
     };
 
-    const result = await dbConnect.getDb().db('BOM').collection('users').replaceOne({_id: id}, {username: username}, updateUser);
+    const result = await dbConnect.getDb().db('cse341').collection('user').replaceOne({_id: id}, {username: username}, updateUser);
     
     if (result.acknowledged) {
         res.status(205).json(result);
@@ -140,9 +163,11 @@ const putUsername = async (req, res, next) => {
 
 // deleteUsername
 const deleteUsername = async (req, res, next) => {
+    // #swagger.tags = ['Username']
+    // #swagger.description = 'Deletes users based on username'
     const username = new ObjectId(req.params.username);
 
-    const result = await dbConnect.getDb().db('BOM').collection('users').replaceOne(username);
+    const result = await dbConnect.getDb().db('cse341').collection('user').replaceOne(username);
      
     if (result.acknowledged) {
         res.status(206).json(result);
