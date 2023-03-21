@@ -114,7 +114,7 @@ const deleteUserId = async (req, res, next) => {
 
 // -------------------------------------------getUsername
 const getUsername = async (req, res, next) => {
-    // #swagger.tags = ['UserName']
+    // #swagger.tags = ['Username']
     // #swagger.description = 'Gets usernames listed in an array of user profiles.'
     const username = new ObjectId(req.params.username);
 
