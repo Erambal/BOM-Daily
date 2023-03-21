@@ -7,7 +7,8 @@ const doc = {
                   users based on user preferences. Also provides admin \
                   functionality for managing users and settings.',
   },
-  host: 'https://bom-daily-1alq.onrender.com',
+  host: 'bom-daily-1alq.onrender.com',
+  schemes: ['https'],
   basepath: "/",
   consumes: ['application/json'],
   produces: ['application/json'],
@@ -69,7 +70,7 @@ const doc = {
       topic: ['Parents', 'Prayer']
     }
   },
-  schemes: ['http', 'https']
+  schemes: ['https']
 };
 
 const outputFile = './swagger.json';
