@@ -18,6 +18,139 @@
     "application/json"
   ],
   "paths": {
+    "/user/": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "description": "Gets users listed in an array of user IDs. Accessible only by admin user",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "description": "Creates a user. Admin user can create any user.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "example": "any"
+                },
+                "fName": {
+                  "example": "any"
+                },
+                "lName": {
+                  "example": "any"
+                },
+                "street": {
+                  "example": "any"
+                },
+                "city": {
+                  "example": "any"
+                },
+                "state": {
+                  "example": "any"
+                },
+                "zipcode": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "phone": {
+                  "example": "any"
+                },
+                "img": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "description": "Updates a user. Admin user can update any user.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "example": "any"
+                },
+                "fName": {
+                  "example": "any"
+                },
+                "lName": {
+                  "example": "any"
+                },
+                "street": {
+                  "example": "any"
+                },
+                "city": {
+                  "example": "any"
+                },
+                "state": {
+                  "example": "any"
+                },
+                "zipcode": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "phone": {
+                  "example": "any"
+                },
+                "img": {
+                  "example": "any"
+                },
+                "admin": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "501": {
+            "description": "Not Implemented"
+          }
+        }
+      }
+    },
     "/user/{id}": {
       "get": {
         "tags": [
@@ -33,8 +166,11 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "202": {
+            "description": "Accepted"
+          },
+          "502": {
+            "description": "Bad Gateway"
           }
         }
       },
@@ -49,15 +185,64 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "example": "any"
+                },
+                "fName": {
+                  "example": "any"
+                },
+                "lName": {
+                  "example": "any"
+                },
+                "street": {
+                  "example": "any"
+                },
+                "city": {
+                  "example": "any"
+                },
+                "state": {
+                  "example": "any"
+                },
+                "zipcode": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "phone": {
+                  "example": "any"
+                },
+                "img": {
+                  "example": "any"
+                },
+                "admin": {
+                  "example": "any"
+                }
+              }
+            }
           }
         ],
-        "responses": {}
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "501": {
+            "description": "Not Implemented"
+          }
+        }
       },
       "delete": {
         "tags": [
           "User"
         ],
-        "description": "Deletes a single user by id. Admin user can delete any user.",
+        "description": "Deletes users listed in an array of user IDs. Accessible only by admin user.",
         "parameters": [
           {
             "name": "id",
@@ -66,82 +251,192 @@
             "type": "string"
           }
         ],
-        "responses": {}
+        "responses": {
+          "203": {
+            "description": "Non-Authoritative Information"
+          },
+          "503": {
+            "description": "Service Unavailable"
+          }
+        }
       }
     },
-    "/user/": {
-      "post": {
-        "tags": [
-          "User"
-        ],
-        "description": "Creates a user. Admin user can create any user.",
-        "parameters": [],
-        "responses": {}
-      }
-    },
-    "/scripture/{id}": {
+    "/user/userprofile/{username}": {
       "get": {
         "tags": [
-          "Scripture"
+          "Username"
         ],
-        "description": "Gets a single scripture by id.",
+        "description": "Gets usernames listed in an array of user profiles.",
         "parameters": [
           {
-            "name": "id",
+            "name": "username",
             "in": "path",
             "required": true,
             "type": "string"
           }
         ],
-        "responses": {}
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "504": {
+            "description": "Gateway Timeout"
+          }
+        }
       },
       "put": {
         "tags": [
-          "Scripture"
+          "Username"
         ],
-        "description": "Updates a scripture. Accessible only by admin user.",
+        "description": "Update a users Username.",
         "parameters": [
           {
-            "name": "id",
+            "name": "username",
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "fName": {
+                  "example": "any"
+                },
+                "lName": {
+                  "example": "any"
+                },
+                "street": {
+                  "example": "any"
+                },
+                "city": {
+                  "example": "any"
+                },
+                "state": {
+                  "example": "any"
+                },
+                "zipcode": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "phone": {
+                  "example": "any"
+                },
+                "img": {
+                  "example": "any"
+                }
+              }
+            }
           }
         ],
-        "responses": {}
+        "responses": {
+          "205": {
+            "description": "Reset Content"
+          },
+          "505": {
+            "description": "HTTP Version Not Supported"
+          }
+        }
       },
       "delete": {
         "tags": [
-          "Scripture"
+          "Username"
         ],
-        "description": "Deletes a single scripture by id. Accessible only by admin user.",
+        "description": "Deletes users based on username",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "206": {
+            "description": "Partial Content"
+          },
+          "506": {
+            "description": "Variant Also Negotiates"
+          }
+        }
+      }
+    },
+    "/user/userprofile/{id}/uploadImage": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "description": "Updates a user. Admin user can update any user.",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "example": "any"
+                },
+                "fName": {
+                  "example": "any"
+                },
+                "lName": {
+                  "example": "any"
+                },
+                "street": {
+                  "example": "any"
+                },
+                "city": {
+                  "example": "any"
+                },
+                "state": {
+                  "example": "any"
+                },
+                "zipcode": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "phone": {
+                  "example": "any"
+                },
+                "img": {
+                  "example": "any"
+                },
+                "admin": {
+                  "example": "any"
+                }
+              }
+            }
           }
         ],
-        "responses": {}
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "501": {
+            "description": "Not Implemented"
+          }
+        }
       }
     },
-    "/scripture/": {
-      "post": {
+    "/scriptures/": {
+      "get": {
         "tags": [
           "Scripture"
         ],
-        "description": "Creates a scripture. Accessible only by admin user.",
-        "parameters": [],
-        "responses": {}
-      }
-    },
-    "/settings/": {
-      "get": {
-        "tags": [
-          "Settings"
-        ],
-        "description": "",
+        "description": "Gets scriptures listed in an array of scripture IDs.",
         "produces": [
           "application/json"
         ],
@@ -157,8 +452,175 @@
       },
       "post": {
         "tags": [
-          "Settings"
+          "Scripture"
         ],
+        "description": "Creates a scripture. Accessible only by admin user.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "volume": {
+                  "example": "any"
+                },
+                "book": {
+                  "example": "any"
+                },
+                "chapter": {
+                  "example": "any"
+                },
+                "verse": {
+                  "example": "any"
+                },
+                "verse_title": {
+                  "example": "any"
+                },
+                "link": {
+                  "example": "any"
+                },
+                "text": {
+                  "example": "any"
+                },
+                "topic": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/scriptures/{id}": {
+      "get": {
+        "tags": [
+          "Scripture"
+        ],
+        "description": "Gets a single scripture by id.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Scripture"
+        ],
+        "description": "Updates a scripture. Accessible only by admin user.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "volume": {
+                  "example": "any"
+                },
+                "book": {
+                  "example": "any"
+                },
+                "chapter": {
+                  "example": "any"
+                },
+                "verse": {
+                  "example": "any"
+                },
+                "verse_title": {
+                  "example": "any"
+                },
+                "link": {
+                  "example": "any"
+                },
+                "text": {
+                  "example": "any"
+                },
+                "topic": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Scripture"
+        ],
+        "description": "Deletes a single scripture by id. Accessible only by admin user.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/settings/": {
+      "get": {
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
         "description": "",
         "parameters": [
           {
@@ -179,7 +641,7 @@
                 "topics": {
                   "example": "any"
                 },
-                "userId": {
+                "settingId": {
                   "example": "any"
                 }
               }
@@ -198,9 +660,6 @@
     },
     "/settings/{id}": {
       "get": {
-        "tags": [
-          "Settings"
-        ],
         "description": "",
         "produces": [
           "application/json"
@@ -223,9 +682,6 @@
         }
       },
       "put": {
-        "tags": [
-          "Settings"
-        ],
         "description": "",
         "parameters": [
           {
@@ -252,7 +708,7 @@
                 "topics": {
                   "example": "any"
                 },
-                "userId": {
+                "settingId": {
                   "example": "any"
                 }
               }
@@ -269,9 +725,6 @@
         }
       },
       "delete": {
-        "tags": [
-          "Settings"
-        ],
         "description": "",
         "parameters": [
           {

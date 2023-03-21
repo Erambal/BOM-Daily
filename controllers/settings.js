@@ -106,7 +106,7 @@ const deleteSetting = async (req, res) => {
 module.exports = {
     getAll,
     getSingle,
-    getSingleByName,
+    //getSingleByName,
     createSetting,
     updateSetting,
     deleteSetting
