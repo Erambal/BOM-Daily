@@ -35,7 +35,8 @@ const postUser = async (req, res, next) => {
         zipcode: req.body.zipcode,
         email: req.body.email,
         phone: req.body.phone,
-        img: req.body.img,
+        img: req.body.img, 
+        admin: req.body.admin,
         setting: {
             color: req.body.setting.color,
             font: req.body.setting.font,
