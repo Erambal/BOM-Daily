@@ -1,5 +1,4 @@
 // req's
-const exp = require('express');
 const dbConnect = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
 
