@@ -4,15 +4,19 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node node_modules/.bin/jest --coverage",
     "start": "nodemon app.js",
     "lint": "eslint .",
     "lint:fix": "eslint --fix",
     "swag-gen": "node swagger.js"
   },
+  "jest": {
+    "preset": "@shelf/jest-mongodb"    
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@shelf/jest-mongodb": "^4.1.7",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
@@ -21,6 +25,7 @@
     "swagger-ui-express": "^4.6.2"
   },
   "devDependencies": {
+    "jest": "^29.5.0",
     "nodemon": "^2.0.20",
     "swagger-autogen": "^2.23.1"
   }
