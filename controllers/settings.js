@@ -1,7 +1,7 @@
 const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
 
-const getCollection = () => client.getDb().db().collection('settings');
+const getCollection = () => client.getDb().db("cse341").collection('settings');
 
 const getAll = async (req, res) => {
     try {
