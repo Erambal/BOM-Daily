@@ -1,7 +1,7 @@
 const client = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
 
-const getCollection = () => client.getDb().db().collection('scriptures');
+const getCollection = () => client.getDb().db("cse341").collection('scriptures');
 
 const getScriptures = async (req, res) => {
     // #swagger.tags = ['Scripture']

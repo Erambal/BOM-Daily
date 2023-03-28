@@ -5,7 +5,7 @@ const getCollection = () => client.getDb().db("cse341").collection('settings');
 
 const getAll = async (req, res) => {
     try {
-        const result = await getCollection.find();
+        const result = await getCollection().find();
         result.toArray().then((lists) => {
             res.setHeader('Content-Type', 'application/json');
             res.status(200).json(lists);
