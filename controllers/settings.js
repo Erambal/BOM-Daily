@@ -1,4 +1,4 @@
-const mongodb = require('../db/connect');
+const client = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
 
 const getCollection = () => client.getDb().db("cse341").collection('settings');
