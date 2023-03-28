@@ -5,7 +5,7 @@ const getCollection = () => client.getDb().db("cse341").collection('settings');
 
 const getAll = async (req, res) => {
     try {
-        const result = await mongodb.getDb().db().collection('settings').find();
+        const result = await getCollection.find();
         result.toArray().then((lists) => {
             res.setHeader('Content-Type', 'application/json');
             res.status(200).json(lists);
@@ -20,7 +20,7 @@ const getAll = async (req, res) => {
 const getSingle = async (req, res) => {
     try {
         const settingId = new ObjectId(req.params.id);
-        const result = await mongodb.getDb().db().collection('settings').find({
+        const result = await getCollection().find({
             _id: settingId
         });
         result.toArray().then((lists) => {
@@ -42,7 +42,7 @@ const createSetting = async (req, res) => {
             topics: req.body.topics,
             settingId: req.body.settingId
         };
-        const response = await mongodb.getDb().db().collection('settings').insertOne(setting);
+        const response = await getCollection().insertOne(setting);
         if (response.acknowledged) {
             res.status(201).json(response);
         } else {
@@ -64,10 +64,7 @@ const updateSetting = async (req, res) => {
             topics: req.body.topics,
             settingId: req.body.settingId
         };
-        const response = await mongodb
-            .getDb()
-            .db()
-            .collection('settings')
+        const response = await getCollection()
             .replaceOne({
                 _id: settingId
             }, setting);
@@ -85,10 +82,7 @@ const updateSetting = async (req, res) => {
 const deleteSetting = async (req, res) => {
     try {
         const settingId = new ObjectId(req.params.id);
-        const response = await mongodb
-            .getDb()
-            .db()
-            .collection('settings')
+        const response = await getCollection()
             .remove({
                 _id: settingId
             }, true);
