@@ -608,7 +608,7 @@
         "tags": [
           "Settings"
         ],
-        "description": "",
+        "description": "Returns all settings documents",
         "produces": [
           "application/json"
         ],
@@ -626,7 +626,7 @@
         "tags": [
           "Settings"
         ],
-        "description": "",
+        "description": "Create a new Settings document",
         "parameters": [
           {
             "name": "body",
@@ -634,20 +634,14 @@
             "schema": {
               "type": "object",
               "properties": {
-                "color": {
+                "name": {
                   "example": "any"
                 },
-                "fontSize": {
+                "code": {
                   "example": "any"
                 },
-                "timeZone": {
-                  "example": "any"
-                },
-                "topics": {
-                  "example": "any"
-                },
-                "settingId": {
-                  "example": "any"
+                "options": {
+                  "example": ["any", "any"]
                 }
               }
             }
@@ -707,20 +701,14 @@
             "schema": {
               "type": "object",
               "properties": {
-                "color": {
+                "name": {
                   "example": "any"
                 },
-                "fontSize": {
+                "code": {
                   "example": "any"
                 },
-                "timeZone": {
-                  "example": "any"
-                },
-                "topics": {
-                  "example": "any"
-                },
-                "settingId": {
-                  "example": "any"
+                "options": {
+                  "example": ["any", "any"]
                 }
               }
             }
@@ -900,17 +888,7 @@
           "type": "array", "example": [
             "#2196F3",
             "#ffffff"
-          ]},
-        "font": {
-          "type": "array",
-          "example": [
-            "Roboto",
-            "Lato"
-          ],
-          "items": {
-            "type": "string"
-          }
-        }
+          ]}
       }
     }
   },
