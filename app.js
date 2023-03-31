@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const db = require('./db/connect');
+const { handleError } = require('./middleware/error-handling')
 
 const swaggerAutogen = require('swagger-autogen')();
 
@@ -26,7 +27,11 @@ app
         res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
         next();
     })
-    .use('/', require('./routes'));
+    // Router
+    .use('/', require('./routes'))
+    // Handling Errors
+    .use(handleError);
+
 
 const start = async () => {
     const connected = await db.connect();    
