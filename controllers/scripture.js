@@ -3,24 +3,34 @@ const ObjectId = require('mongodb').ObjectId;
 
 const getCollection = () => client.getDb().db("cse341").collection('scriptures');
 
-const getScriptures = async (req, res) => {
+const getScriptures = async (req, res, next) => {
     // #swagger.tags = ['Scripture']
     // #swagger.description = 'Gets scriptures listed in an array of scripture IDs.'
     try {
-        const result = await getCollection().find();
+        let filters= {};
+        const params = req.query;
+        for(let prop in params){
+            if (Object.hasOwnProperty.call(params, prop)) {
+                const value = params[prop];
+                //console.log(Array.isArray(value));
+                if(Array.isArray(value))
+                    filters[prop] = { "$all": value} ;
+                else
+                    filters[prop] = value;
+            }
+        }
+        console.log(filters);
+        const result = await getCollection().find(filters);
         result.toArray().then((list) => {
             res.setHeader('Content-Type', 'application/json');
             res.status(200).json(list);
         });
     } catch (err) {
-        console.log(err);
-        res.status(500).json({
-            message: err.message
-        });
+       next(err);
     }
 };
 
-const getScriptureById = async (req, res) => {
+const getScriptureById = async (req, res, next) => {
     // #swagger.tags = ['Scripture']
     // #swagger.description = 'Gets a single scripture by id.'
     try {
@@ -33,12 +43,11 @@ const getScriptureById = async (req, res) => {
         res.status(200).json(result);
         
     } catch (err) {
-        console.log(err);
-        res.status(500).json(err);
+        next(err);
     }
 };
 
-const createScripture = async(req, res) => {
+const createScripture = async(req, res, next) => {
     // #swagger.tags = ['Scripture']
     // #swagger.description = 'Creates a scripture. Accessible only by admin user.'
     try {
@@ -56,14 +65,14 @@ const createScripture = async(req, res) => {
         if (response.acknowledged) {
             res.status(201).json(response);
         } else {
-            res.status(500).json(response.error || 'An error occurred while creating the scripture.');
+            next(response.error || 'An error occurred while creating the scripture.');
         }
     } catch (err) {
-        res.status(500).json(err);
+        next(err);
     }
 }
 
-const updateScripture = async (req, res) => {
+const updateScripture = async (req, res, next) => {
     // #swagger.tags = ['Scripture']
     // #swagger.description = 'Updates a scripture.  Accessible only by admin user.'
     try {
@@ -87,11 +96,10 @@ const updateScripture = async (req, res) => {
         if (response.modifiedCount > 0) {
             res.status(204).send();
         } else {
-            res.status(500).json(response.error || 'An error occurred while updating the scripture.');
+            next(response.error || new Error('An error occurred while updating the scripture.'));
         }
     } catch (err) {
-        console.log(err)
-        res.status(500).json(err);
+        next(err);
     }
 };
 
@@ -102,7 +110,7 @@ const updateScripture = async (req, res) => {
 //     // code goes here
 // };
  
-const deleteScripture = async (req, res) => {
+const deleteScripture = async (req, res,next) => {
     // #swagger.tags = ['Scripture']
     // #swagger.description = 'Deletes a single scripture by id.  Accessible only by admin user.'
     try {
@@ -115,11 +123,10 @@ const deleteScripture = async (req, res) => {
         if (response.deletedCount > 0) {
             res.status(204).send();
         } else {
-            res.status(500).json(response.error || 'An error occurred while deleting the scripture.');
+            next(response.error || new Error('An error occurred while deleting the scripture.'));
         }
     } catch (err) {
-        console.log(err);
-        res.status(500).json(err);
+        next(err);
     }
 };
 

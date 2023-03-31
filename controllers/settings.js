@@ -3,21 +3,37 @@ const ObjectId = require('mongodb').ObjectId;
 
 const getCollection = () => client.getDb().db("cse341").collection('settings');
 
-const getAll = async (req, res) => {
+const getAll = async (req, res, next) => {
+    // #swagger.tags = ['Settings']
+    // #swagger.description = 'Gets settings listed in an array of settings.'
     try {
-        const result = await getCollection().find();
+        let filters= {};
+        const params = req.query;
+        for(let prop in params){
+            if (Object.hasOwnProperty.call(params, prop)) {
+                const value = params[prop];
+                //console.log(Array.isArray(value));
+                if(Array.isArray(value))
+                    filters[prop] = { "$all": value} ;
+                else
+                    filters[prop] = value;
+            }
+        }
+        console.log(filters);
+        const result = await getCollection().find(filters);
         result.toArray().then((lists) => {
             res.setHeader('Content-Type', 'application/json');
             res.status(200).json(lists);
         });
     } catch (err) {
-        res.status(500).json({
-            message: err.message
-        });
+        next(err);
     }
 };
 
-const getSingle = async (req, res) => {
+const getSingle = async (req, res, next) => {
+    // #swagger.tags = ['Settings']
+    // #swagger.description = 'Gets a single Setting by id.'
+
     try {
         const settingId = new ObjectId(req.params.id);
         const result = await getCollection().find({
@@ -28,12 +44,11 @@ const getSingle = async (req, res) => {
             res.status(200).json(lists[0]);
         });
     } catch (err) {
-        console.log(err);
-        res.status(500).json(err);
+        next(err);
     }
 };
 
-const createSetting = async (req, res) => {
+const createSetting = async (req, res, next) => {
     try {
         const setting = {
             color: req.body.color,
@@ -49,11 +64,11 @@ const createSetting = async (req, res) => {
             res.status(500).json(response.error || 'An error occurred while creating the setting.');
         }
     } catch (err) {
-        res.status(500).json(err);
+        next(err);
     }
 };
 
-const updateSetting = async (req, res) => {
+const updateSetting = async (req, res, next) => {
     try {
         const settingId = new ObjectId(req.params.id);
         // be aware of updateOne if you only want to update specific fields
@@ -75,11 +90,11 @@ const updateSetting = async (req, res) => {
             res.status(500).json(response.error || 'An error occurred while updating the setting.');
         }
     } catch (err) {
-        res.status(500).json(err);
+        next(err);
     }
 };
 
-const deleteSetting = async (req, res) => {
+const deleteSetting = async (req, res, next) => {
     try {
         const settingId = new ObjectId(req.params.id);
         const response = await getCollection()
@@ -93,14 +108,13 @@ const deleteSetting = async (req, res) => {
             res.status(500).json(response.error || 'An error occurred while deleting the setting.');
         }
     } catch (err) {
-        res.status(500).json(err);
+        next(err);
     }
 };
 
 module.exports = {
     getAll,
     getSingle,
-    //getSingleByName,
     createSetting,
     updateSetting,
     deleteSetting
