@@ -605,6 +605,9 @@
     },
     "/settings/": {
       "get": {
+        "tags": [
+          "Settings"
+        ],
         "description": "",
         "produces": [
           "application/json"
@@ -620,6 +623,9 @@
         }
       },
       "post": {
+        "tags": [
+          "Settings"
+        ],
         "description": "",
         "parameters": [
           {
@@ -659,7 +665,10 @@
     },
     "/settings/{id}": {
       "get": {
-        "description": "",
+        "tags": [
+          "Settings"
+        ],
+        "description": "Returns a single Settings document by ID",
         "produces": [
           "application/json"
         ],
@@ -681,7 +690,10 @@
         }
       },
       "put": {
-        "description": "",
+        "tags": [
+          "Settings"
+        ],
+        "description": "Updates Setting document",
         "parameters": [
           {
             "name": "id",
@@ -724,7 +736,10 @@
         }
       },
       "delete": {
-        "description": "",
+        "tags": [
+          "Settings"
+        ],
+        "description": "Deletes a single Setting document",
         "parameters": [
           {
             "name": "id",
@@ -833,11 +848,27 @@
     "scripture": {
       "type": "object",
       "properties": {
-        "reference": {
+        "volume": {
+          "type": "string",
+          "example": "Book of Mormon"
+        },
+        "book": {
+          "type": "string",
+          "example": "Nephi"
+        },
+        "chapter": {
+          "type": "number",
+          "example": 1
+        },
+        "verse": {
+          "type": "number",
+          "example": 1
+        },
+        "verse_title": {
           "type": "string",
           "example": "1 Nephi 1:1"
         },
-        "text": {
+        "scripture_text": {
           "type": "string",
           "example": "I, Nephi, ..."
         },
@@ -860,34 +891,21 @@
         }
       }
     },
-    "settings": {
+    "setting": {
       "type": "object",
       "properties": {
+        "name" : { "type": "string", "example": "Font"},
+        "code" : { "type": "string", "example": "font"},
+        "options" : { 
+          "type": "array", "example": [
+            "#2196F3",
+            "#ffffff"
+          ]},
         "font": {
           "type": "array",
           "example": [
             "Roboto",
             "Lato"
-          ],
-          "items": {
-            "type": "string"
-          }
-        },
-        "color": {
-          "type": "array",
-          "example": [
-            "#2196F3",
-            "#ffffff"
-          ],
-          "items": {
-            "type": "string"
-          }
-        },
-        "topic": {
-          "type": "array",
-          "example": [
-            "Parents",
-            "Prayer"
           ],
           "items": {
             "type": "string"
