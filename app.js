@@ -13,6 +13,19 @@ const port = process.env.PORT || 3001;
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
 
+const { auth, requiresAuth } = require('express-openid-connect');
+
+const authConfig = {
+  authRequired: false,
+  auth0Logout: true,
+  secret: process.env.SECRET,
+  baseURL: process.env.BASE_URL,
+  clientID: process.env.CLIENT_ID,
+  issuerBaseURL: process.env.ISSUER_BASE_URL
+};
+
+app.use(auth(authConfig));
+
 app
     .use(express.json())
     .use(cors())

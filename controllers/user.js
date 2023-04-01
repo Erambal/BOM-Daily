@@ -37,13 +37,13 @@ const postUser = async (req, res, next) => {
         phone: req.body.phone,
         img: req.body.img, 
         admin: req.body.admin,
-        setting: {
-            color: req.body.setting.color,
-            font: req.body.setting.font,
-            time: req.body.setting.time,
-            topic: req.body.setting.topic,
-            favorite_list: req.body.setting.favorite_list
-        }
+        // setting: {
+        //     color: req.body.setting.color,
+        //     font: req.body.setting.font,
+        //     time: req.body.setting.time,
+        //     topic: req.body.setting.topic,
+        //     favorite_list: req.body.setting.favorite_list
+        // }
     };
 
     const result = await dbConnect.getDb().db('cse341').collection('user').insertOne(newUser);
@@ -72,13 +72,13 @@ const putUser = async (req, res, next) => {
         phone: req.body.phone,
         img: req.body.img,
         admin: req.body.admin,
-        setting: {
-            color: req.body.setting.color,
-            font: req.body.setting.font,
-            time: req.body.setting.time,
-            topic: req.body.setting.topic,
-            favorite_list: req.body.setting.favorite_list
-        }
+        // setting: {
+        //     color: req.body.setting.color,
+        //     font: req.body.setting.font,
+        //     time: req.body.setting.time,
+        //     topic: req.body.setting.topic,
+        //     favorite_list: req.body.setting.favorite_list
+        // }
     };
 
     const result = await dbConnect.getDb().db('cse341').collection('user').replaceOne({_id: id}, updateUser);
@@ -158,14 +158,13 @@ const putUsername = async (req, res, next) => {
         phone: req.body.phone,
         img: req.body.img,  
         admin: req.body.admin,
-        setting: {
-            color: req.body.setting.color,
-            font: req.body.setting.font,
-            time: req.body.setting.time,
-            topic: req.body.setting.topic,
-            favorite_list: req.body.setting.favorite_list
-        }
-        
+        // setting: {
+        //     color: req.body.setting.color,
+        //     font: req.body.setting.font,
+        //     time: req.body.setting.time,
+        //     topic: req.body.setting.topic,
+        //     favorite_list: req.body.setting.favorite_list
+        // } 
     };
 
     const result = await dbConnect.getDb().db('cse341').collection('user').replaceOne({_id: id}, {username: username}, updateUser);

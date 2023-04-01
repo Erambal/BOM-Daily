@@ -77,6 +77,9 @@
                 },
                 "img": {
                   "example": "any"
+                },
+                "admin": {
+                  "example": "any"
                 }
               }
             }
@@ -85,6 +88,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "412": {
+            "description": "Precondition Failed"
           },
           "500": {
             "description": "Internal Server Error"
@@ -143,6 +149,9 @@
         "responses": {
           "201": {
             "description": "Created"
+          },
+          "412": {
+            "description": "Precondition Failed"
           },
           "501": {
             "description": "Not Implemented"
@@ -231,6 +240,9 @@
         "responses": {
           "201": {
             "description": "Created"
+          },
+          "412": {
+            "description": "Precondition Failed"
           },
           "501": {
             "description": "Not Implemented"
@@ -326,6 +338,9 @@
                   "example": "any"
                 },
                 "img": {
+                  "example": "any"
+                },
+                "admin": {
                   "example": "any"
                 }
               }
@@ -443,9 +458,6 @@
         "responses": {
           "200": {
             "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         }
       },
@@ -492,9 +504,6 @@
         "responses": {
           "201": {
             "description": "Created"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         }
       }
@@ -519,9 +528,6 @@
         "responses": {
           "200": {
             "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         }
       },
@@ -574,9 +580,6 @@
         "responses": {
           "204": {
             "description": "No Content"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         }
       },
@@ -596,9 +599,6 @@
         "responses": {
           "204": {
             "description": "No Content"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         }
       }
@@ -608,7 +608,7 @@
         "tags": [
           "Settings"
         ],
-        "description": "Returns all settings documents",
+        "description": "Gets settings listed in an array of settings.",
         "produces": [
           "application/json"
         ],
@@ -616,17 +616,11 @@
         "responses": {
           "200": {
             "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         }
       },
       "post": {
-        "tags": [
-          "Settings"
-        ],
-        "description": "Create a new Settings document",
+        "description": "",
         "parameters": [
           {
             "name": "body",
@@ -634,14 +628,20 @@
             "schema": {
               "type": "object",
               "properties": {
-                "name": {
+                "color": {
                   "example": "any"
                 },
-                "code": {
+                "fontSize": {
                   "example": "any"
                 },
-                "options": {
-                  "example": ["any", "any"]
+                "timeZone": {
+                  "example": "any"
+                },
+                "topics": {
+                  "example": "any"
+                },
+                "settingId": {
+                  "example": "any"
                 }
               }
             }
@@ -662,7 +662,7 @@
         "tags": [
           "Settings"
         ],
-        "description": "Returns a single Settings document by ID",
+        "description": "Gets a single Setting by id.",
         "produces": [
           "application/json"
         ],
@@ -677,17 +677,11 @@
         "responses": {
           "200": {
             "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         }
       },
       "put": {
-        "tags": [
-          "Settings"
-        ],
-        "description": "Updates Setting document",
+        "description": "",
         "parameters": [
           {
             "name": "id",
@@ -701,14 +695,20 @@
             "schema": {
               "type": "object",
               "properties": {
-                "name": {
+                "color": {
                   "example": "any"
                 },
-                "code": {
+                "fontSize": {
                   "example": "any"
                 },
-                "options": {
-                  "example": ["any", "any"]
+                "timeZone": {
+                  "example": "any"
+                },
+                "topics": {
+                  "example": "any"
+                },
+                "settingId": {
+                  "example": "any"
                 }
               }
             }
@@ -724,10 +724,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Settings"
-        ],
-        "description": "Deletes a single Setting document",
+        "description": "",
         "parameters": [
           {
             "name": "id",
@@ -836,27 +833,11 @@
     "scripture": {
       "type": "object",
       "properties": {
-        "volume": {
-          "type": "string",
-          "example": "Book of Mormon"
-        },
-        "book": {
-          "type": "string",
-          "example": "Nephi"
-        },
-        "chapter": {
-          "type": "number",
-          "example": 1
-        },
-        "verse": {
-          "type": "number",
-          "example": 1
-        },
-        "verse_title": {
+        "reference": {
           "type": "string",
           "example": "1 Nephi 1:1"
         },
-        "scripture_text": {
+        "text": {
           "type": "string",
           "example": "I, Nephi, ..."
         },
@@ -879,16 +860,39 @@
         }
       }
     },
-    "setting": {
+    "settings": {
       "type": "object",
       "properties": {
-        "name" : { "type": "string", "example": "Font"},
-        "code" : { "type": "string", "example": "font"},
-        "options" : { 
-          "type": "array", "example": [
+        "font": {
+          "type": "array",
+          "example": [
+            "Roboto",
+            "Lato"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "color": {
+          "type": "array",
+          "example": [
             "#2196F3",
             "#ffffff"
-          ]}
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "topic": {
+          "type": "array",
+          "example": [
+            "Parents",
+            "Prayer"
+          ],
+          "items": {
+            "type": "string"
+          }
+        }
       }
     }
   },
