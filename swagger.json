@@ -458,6 +458,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
@@ -504,6 +507,9 @@
         "responses": {
           "201": {
             "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
@@ -528,6 +534,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
@@ -580,6 +589,9 @@
         "responses": {
           "204": {
             "description": "No Content"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
@@ -599,6 +611,9 @@
         "responses": {
           "204": {
             "description": "No Content"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
@@ -616,11 +631,17 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
       "post": {
-        "description": "",
+        "tags": [
+          "Settings"
+        ],
+        "description": "Create a new Settings document",
         "parameters": [
           {
             "name": "body",
@@ -628,20 +649,14 @@
             "schema": {
               "type": "object",
               "properties": {
-                "color": {
+                "name": {
                   "example": "any"
                 },
-                "fontSize": {
+                "code": {
                   "example": "any"
                 },
-                "timeZone": {
-                  "example": "any"
-                },
-                "topics": {
-                  "example": "any"
-                },
-                "settingId": {
-                  "example": "any"
+                "options": {
+                  "example": ["any", "any"]
                 }
               }
             }
@@ -677,11 +692,17 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
       "put": {
-        "description": "",
+        "tags": [
+          "Settings"
+        ],
+        "description": "Updates Setting document",
         "parameters": [
           {
             "name": "id",
@@ -695,20 +716,14 @@
             "schema": {
               "type": "object",
               "properties": {
-                "color": {
+                "name": {
                   "example": "any"
                 },
-                "fontSize": {
+                "code": {
                   "example": "any"
                 },
-                "timeZone": {
-                  "example": "any"
-                },
-                "topics": {
-                  "example": "any"
-                },
-                "settingId": {
-                  "example": "any"
+                "options": {
+                  "example": ["any", "any"]
                 }
               }
             }
@@ -724,7 +739,10 @@
         }
       },
       "delete": {
-        "description": "",
+        "tags": [
+          "Settings"
+        ],
+        "description": "Deletes a single Setting document",
         "parameters": [
           {
             "name": "id",
@@ -833,11 +851,27 @@
     "scripture": {
       "type": "object",
       "properties": {
-        "reference": {
+        "volume": {
+          "type": "string",
+          "example": "Book of Mormon"
+        },
+        "book": {
+          "type": "string",
+          "example": "Nephi"
+        },
+        "chapter": {
+          "type": "number",
+          "example": 1
+        },
+        "verse": {
+          "type": "number",
+          "example": 1
+        },
+        "verse_title": {
           "type": "string",
           "example": "1 Nephi 1:1"
         },
-        "text": {
+        "scripture_text": {
           "type": "string",
           "example": "I, Nephi, ..."
         },
@@ -860,39 +894,16 @@
         }
       }
     },
-    "settings": {
+    "setting": {
       "type": "object",
       "properties": {
-        "font": {
-          "type": "array",
-          "example": [
-            "Roboto",
-            "Lato"
-          ],
-          "items": {
-            "type": "string"
-          }
-        },
-        "color": {
-          "type": "array",
-          "example": [
+        "name" : { "type": "string", "example": "Font"},
+        "code" : { "type": "string", "example": "font"},
+        "options" : { 
+          "type": "array", "example": [
             "#2196F3",
             "#ffffff"
-          ],
-          "items": {
-            "type": "string"
-          }
-        },
-        "topic": {
-          "type": "array",
-          "example": [
-            "Parents",
-            "Prayer"
-          ],
-          "items": {
-            "type": "string"
-          }
-        }
+          ]}
       }
     }
   },
