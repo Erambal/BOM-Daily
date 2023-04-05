@@ -49,13 +49,14 @@ const getSingle = async (req, res, next) => {
 };
 
 const createSetting = async (req, res, next) => {
+    // #swagger.tags = ['Settings']
+    // #swagger.description = 'Create a new Setting.'
+
     try {
         const setting = {
-            color: req.body.color,
-            fontSize: req.body.fontSize,
-            timeZone: req.body.timeZone,
-            topics: req.body.topics,
-            settingId: req.body.settingId
+            name: req.body.name,
+            code: req.body.code,
+            options: req.body.options
         };
         const response = await getCollection().insertOne(setting);
         if (response.acknowledged) {
@@ -69,15 +70,16 @@ const createSetting = async (req, res, next) => {
 };
 
 const updateSetting = async (req, res, next) => {
+    // #swagger.tags = ['Settings']
+    // #swagger.description = 'Updates existing Setting.'
+
     try {
         const settingId = new ObjectId(req.params.id);
         // be aware of updateOne if you only want to update specific fields
         const setting = {
-            color: req.body.color,
-            fontSize: req.body.fontSize,
-            timeZone: req.body.timeZone,
-            topics: req.body.topics,
-            settingId: req.body.settingId
+            name: req.body.name,
+            code: req.body.code,
+            options: req.body.options
         };
         const response = await getCollection()
             .replaceOne({
@@ -95,6 +97,9 @@ const updateSetting = async (req, res, next) => {
 };
 
 const deleteSetting = async (req, res, next) => {
+    // #swagger.tags = ['Settings']
+    // #swagger.description = 'Deletes existing Setting.'
+
     try {
         const settingId = new ObjectId(req.params.id);
         const response = await getCollection()
