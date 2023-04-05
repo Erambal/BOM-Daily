@@ -130,5 +130,10 @@ const deleteScripture = async (req, res,next) => {
     }
 };
 
-// module.exports = { getScriptures, getScripture, createScripture, updateScripture, deleteScriptures, deleteScripture };
-module.exports = { getScriptures, getScriptureById, createScripture, updateScripture, deleteScripture };
+module.exports = { 
+    getScriptures, 
+    getScriptureById, 
+    createScripture, 
+    updateScripture, 
+    deleteScripture
+};
