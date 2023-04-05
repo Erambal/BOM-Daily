@@ -107,7 +107,7 @@ const deleteFavorite = async (req, res,next) => {
     try {
         const favorite = new ObjectId(req.params.id);
         const response = await getCollection()
-            .remove({
+            .deleteOne({
                 _id: favorite
             }, true);
         if (response.deletedCount > 0) {

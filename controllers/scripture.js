@@ -114,9 +114,10 @@ const deleteScripture = async (req, res,next) => {
     // #swagger.tags = ['Scripture']
     // #swagger.description = 'Deletes a single scripture by id.  Accessible only by admin user.'
     try {
+        console.log(`deleting ${req.params.id}`)
         const scripture = new ObjectId(req.params.id);
         const response = await getCollection()
-            .remove({
+            .deleteOne({
                 _id: scripture
             }, true);
         console.log(response);

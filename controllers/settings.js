@@ -98,7 +98,7 @@ const deleteSetting = async (req, res, next) => {
     try {
         const settingId = new ObjectId(req.params.id);
         const response = await getCollection()
-            .remove({
+            .deleteOne({
                 _id: settingId
             }, true);
         console.log(response);
