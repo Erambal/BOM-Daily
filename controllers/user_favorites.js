@@ -40,7 +40,7 @@ const getAllFavorites = async (req, res, next) => {
 }
 
 const getFavoriteById = async (req, res, next) => {
-    // #swagger.tags = ['Favorites']
+    // #swagger.tags = ['User Favorites']
     // #swagger.description = 'Gets a single favorite by id.'
     try {
         const favoriteId = new ObjectId(req.params.id);
@@ -57,7 +57,7 @@ const getFavoriteById = async (req, res, next) => {
 };
 
 const createFavorite = async(req, res, next) => {
-    // #swagger.tags = ['Favoritee']
+    // #swagger.tags = ['User Favorites']
     // #swagger.description = 'Creates a favoritee. Accessible only by admin user.'
     try {
         const favoritee = {
@@ -77,7 +77,7 @@ const createFavorite = async(req, res, next) => {
 
 
 const updateFavorite = async (req, res, next) => {
-    // #swagger.tags = ['Favorites']
+    // #swagger.tags = ['User Favorites']
     // #swagger.description = 'Updates a favorite.  Accessible only by admin user.'
     try {
         const favoriteId = new ObjectId(req.params.id);
@@ -102,7 +102,7 @@ const updateFavorite = async (req, res, next) => {
 };
 
 const deleteFavorite = async (req, res,next) => {
-    // #swagger.tags = ['Favorites']
+    // #swagger.tags = ['User Favorites']
     // #swagger.description = 'Deletes a single favorite by id.  Accessible only by admin user.'
     try {
         const favorite = new ObjectId(req.params.id);

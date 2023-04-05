@@ -91,9 +91,6 @@
           },
           "412": {
             "description": "Precondition Failed"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         }
       },
@@ -152,9 +149,6 @@
           },
           "412": {
             "description": "Precondition Failed"
-          },
-          "501": {
-            "description": "Not Implemented"
           }
         }
       }
@@ -176,9 +170,6 @@
         "responses": {
           "202": {
             "description": "Accepted"
-          },
-          "502": {
-            "description": "Bad Gateway"
           }
         }
       },
@@ -243,9 +234,6 @@
           },
           "412": {
             "description": "Precondition Failed"
-          },
-          "501": {
-            "description": "Not Implemented"
           }
         }
       },
@@ -265,9 +253,6 @@
         "responses": {
           "203": {
             "description": "Non-Authoritative Information"
-          },
-          "503": {
-            "description": "Service Unavailable"
           }
         }
       }
@@ -289,9 +274,6 @@
         "responses": {
           "204": {
             "description": "No Content"
-          },
-          "504": {
-            "description": "Gateway Timeout"
           }
         }
       },
@@ -350,9 +332,6 @@
         "responses": {
           "205": {
             "description": "Reset Content"
-          },
-          "505": {
-            "description": "HTTP Version Not Supported"
           }
         }
       },
@@ -372,9 +351,6 @@
         "responses": {
           "206": {
             "description": "Partial Content"
-          },
-          "506": {
-            "description": "Variant Also Negotiates"
           }
         }
       }
@@ -438,9 +414,6 @@
         "responses": {
           "201": {
             "description": "Created"
-          },
-          "501": {
-            "description": "Not Implemented"
           }
         }
       }
@@ -458,9 +431,6 @@
         "responses": {
           "200": {
             "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         }
       },
@@ -507,9 +477,6 @@
         "responses": {
           "201": {
             "description": "Created"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         }
       }
@@ -534,9 +501,6 @@
         "responses": {
           "200": {
             "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         }
       },
@@ -589,9 +553,6 @@
         "responses": {
           "204": {
             "description": "No Content"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         }
       },
@@ -611,9 +572,6 @@
         "responses": {
           "204": {
             "description": "No Content"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         }
       }
@@ -631,9 +589,6 @@
         "responses": {
           "200": {
             "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         }
       },
@@ -641,7 +596,7 @@
         "tags": [
           "Settings"
         ],
-        "description": "Create a new Settings document",
+        "description": "Create a new Setting.",
         "parameters": [
           {
             "name": "body",
@@ -656,7 +611,7 @@
                   "example": "any"
                 },
                 "options": {
-                  "example": ["any", "any"]
+                  "example": "any"
                 }
               }
             }
@@ -692,9 +647,6 @@
         "responses": {
           "200": {
             "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         }
       },
@@ -702,7 +654,7 @@
         "tags": [
           "Settings"
         ],
-        "description": "Updates Setting document",
+        "description": "Updates existing Setting.",
         "parameters": [
           {
             "name": "id",
@@ -723,7 +675,7 @@
                   "example": "any"
                 },
                 "options": {
-                  "example": ["any", "any"]
+                  "example": "any"
                 }
               }
             }
@@ -742,7 +694,7 @@
         "tags": [
           "Settings"
         ],
-        "description": "Deletes a single Setting document",
+        "description": "Deletes existing Setting.",
         "parameters": [
           {
             "name": "id",
@@ -757,6 +709,128 @@
           },
           "500": {
             "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/user-favorites/": {
+      "get": {
+        "tags": [
+          "User Favorites"
+        ],
+        "description": "Gets users listed in an array of user IDs. Accessible only by admin user",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "User Favorites"
+        ],
+        "description": "Creates a favoritee. Accessible only by admin user.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "user_id": {
+                  "example": "any"
+                },
+                "scripture_id": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/user-favorites/{id}": {
+      "get": {
+        "tags": [
+          "User Favorites"
+        ],
+        "description": "Gets a single favorite by id.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "User Favorites"
+        ],
+        "description": "Updates a favorite. Accessible only by admin user.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "user_id": {
+                  "example": "any"
+                },
+                "scripture_id": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "User Favorites"
+        ],
+        "description": "Deletes a single favorite by id. Accessible only by admin user.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
           }
         }
       }
@@ -857,7 +931,7 @@
         },
         "book": {
           "type": "string",
-          "example": "Nephi"
+          "example": "1 Nephi"
         },
         "chapter": {
           "type": "number",
@@ -873,7 +947,7 @@
         },
         "scripture_text": {
           "type": "string",
-          "example": "I, Nephi, ..."
+          "example": "I, Nephi, having been born of goodly parents..."
         },
         "link": {
           "type": "string",
@@ -886,7 +960,7 @@
         "topic": {
           "type": "array",
           "example": [
-            "Parents"
+            "Faith"
           ],
           "items": {
             "type": "string"
@@ -894,16 +968,27 @@
         }
       }
     },
-    "setting": {
+    "settings": {
       "type": "object",
       "properties": {
-        "name" : { "type": "string", "example": "Font"},
-        "code" : { "type": "string", "example": "font"},
-        "options" : { 
-          "type": "array", "example": [
+        "name": {
+          "type": "string",
+          "example": "Color"
+        },
+        "code": {
+          "type": "string",
+          "example": "color"
+        },
+        "options": {
+          "type": "array",
+          "example": [
             "#2196F3",
             "#ffffff"
-          ]}
+          ],
+          "items": {
+            "type": "string"
+          }
+        }
       }
     }
   },
