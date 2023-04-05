@@ -58,16 +58,20 @@ const doc = {
       }
     },
     scripture: {
-      reference: '1 Nephi 1:1',
-      text: 'I, Nephi, ...',
+      volume: 'Book of Mormon',
+      book: '1 Nephi',
+      chapter: 1,
+      verse: 1,
+      verse_title: '1 Nephi 1:1',
+      scripture_text: 'I, Nephi, having been born of goodly parents...',
       link: 'https://www.churchofjesuschrist.org/study/scriptures/bofm/1-ne/1?lang=eng',
       image: 'https://www.churchofjesuschrist.org/search?lang=eng&type=image&query=nephi',
-      topic: ['Parents']
+      topic: ['Faith']
     },
     settings: {
-      font: ['Roboto', 'Lato' ],
-      color: ['#2196F3', '#ffffff'],
-      topic: ['Parents', 'Prayer']
+      name: 'Color',
+      code: 'color',
+      options: ['#2196F3', '#ffffff']
     }
   },
   schemes: ['https']
