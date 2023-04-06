@@ -11,7 +11,7 @@ const valUser = async (req, res, next) => {
         "zipcode": "required|string",
         "email": "required|email",
         "phone": "required|string",
-        "img_url": "required|string",
+        "img": "required|string",
         "admin":"boolean"
     };
 
