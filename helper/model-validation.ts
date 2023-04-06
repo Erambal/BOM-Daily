@@ -1,4 +1,6 @@
+// @ts-ignore
 const Validator = require('validatorjs');
+// @ts-ignore
 const validator = async (body, rules, customMessages, callback) => {
     const validation = new Validator(body, rules, customMessages);
     validation.passes(() => callback(null, true));

@@ -1,4 +1,6 @@
+// @ts-ignore
 const express = require('express');
+// @ts-ignore
 const router = express.Router();
 const user_favorite = require('../controllers/user_favorites');
 

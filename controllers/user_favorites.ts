@@ -1,6 +1,8 @@
+// @ts-ignore
 const client = require('../db/connect');
+// @ts-ignore
 const ObjectId = require('mongodb').ObjectId;
-
+// @ts-ignore
 const getCollection = () => client.getDb().db("cse341").collection('user_favorites');
 
 //functions
@@ -89,7 +91,7 @@ const updateFavorite = async (req, res, next) => {
         const response = await getCollection()
             .replaceOne({
                 _id: favoriteId
-            }, setting);
+            }, favorite);
         console.log(response);
         if (response.modifiedCount > 0) {
             res.status(204).send();

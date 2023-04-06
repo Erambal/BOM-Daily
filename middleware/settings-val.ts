@@ -1,4 +1,6 @@
+// @ts-ignore
 const validator = require('../helper/model-validation');
+// @ts-ignore
 const validateSetting = async (req, res, next) => {
     const validationRule = {
         "name": "required|string",

@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+      "strict": false,
+      "noImplicitAny": false,
+      "declaration": true,
+      "module": "commonjs",
+      "esModuleInterop": true,
+      "target": "es6",
+      "sourceMap": true
+    },
+    "include": ["./app.ts"],
+    "exclude": [
+      "node_modules"
+    ]
+  }

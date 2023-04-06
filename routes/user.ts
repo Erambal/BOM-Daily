@@ -1,7 +1,11 @@
 //Req's
+// @ts-ignore
 const router = require('express').Router();
+// @ts-ignore
 const useControl = require('../controllers/user');
+// @ts-ignore
 const { requiresAuth } = require('express-openid-connect');
+// @ts-ignore
 const val = require('../middleware/userVal');
 
 //routes

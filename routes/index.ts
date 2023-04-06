@@ -1,4 +1,6 @@
+// @ts-ignore
 const express = require('express');
+// @ts-ignore
 const router = express.Router();
 
 router.use('/user', require('./user'));

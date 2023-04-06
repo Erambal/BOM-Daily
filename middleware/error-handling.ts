@@ -1,3 +1,4 @@
+// @ts-ignore
 const handleError =  function (err, req, res, next) {
     console.log(err);
     err.statusCode = err.statusCode || 500;

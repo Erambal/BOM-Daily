@@ -1,5 +1,6 @@
 // req's
 const dbConnect = require('../db/connect');
+//@ts-ignore
 const ObjectId = require('mongodb').ObjectId;
 
 
@@ -20,7 +21,7 @@ const getAllUsers = async (req, res, next) => {
             res.status(200).json(users);
         });
     } catch (error) {
-        next(err)
+        next(error)
     }
 }
 
@@ -55,10 +56,10 @@ const postUser = async (req, res, next) => {
         if (result.acknowledged) {
             res.status(200).json(result);
         } else {
-            next(response.error || new Error('We seem to have a problem with your submission.'))
+            next(result.error || new Error('We seem to have a problem with your submission.'))
         };
     } catch (error) {
-        next(err)
+        next(error)
     }
 }
 // -------------------------------------------putUser - Update individual user by their ID
@@ -93,10 +94,10 @@ const putUser = async (req, res, next) => {
         if (result.acknowledged) {
             res.status(201).json(result);
         } else {
-            next(response.error || new Error('We seem to have a problem with your submission.'))
+            next(result.error || new Error('We seem to have a problem with your submission.'))
         };
     } catch (error) {
-        next(err)
+        next(error)
     }
 
 }
@@ -113,10 +114,10 @@ const getUserId = async (req, res, next) => {
         if (result.acknowledged) {
             res.status(202).json(result);
         } else {
-            next(response.error || new Error('We seem to have a problem with your submission.'))
+            next(result.error || new Error('We seem to have a problem with your submission.'))
         };
     } catch (error) {
-        next(err)
+        next(error)
     }
 }
 
@@ -131,10 +132,10 @@ const deleteUserId = async (req, res, next) => {
         if (result.acknowledged) {
             res.status(203).json(result);
         } else {
-            next(response.error || new Error('We seem to have a problem with your submission.'))
+            next(result.error || new Error('We seem to have a problem with your submission.'))
         };
     } catch (error) {
-        next(err)
+        next(error)
     }
 }
 
@@ -151,10 +152,10 @@ const getUsername = async (req, res, next) => {
         if (result.acknowledged) {
             res.status(204).json(result);
         } else {
-            next(response.error || new Error('We seem to have a problem with your submission.'))
+            next(result.error || new Error('We seem to have a problem with your submission.'))
         };
     } catch (error) {
-        next(err)
+        next(error)
     }
     
 }
@@ -188,15 +189,15 @@ const putUsername = async (req, res, next) => {
             // } 
         };
 
-        const result = await dbConnect.getDb().db('cse341').collection('user').replaceOne({_id: id}, {username: username}, updateUser);
+        const result = await dbConnect.getDb().db('cse341').collection('user').replaceOne({_id: id}, {username: updateUsername}, updateUser);
         
         if (result.acknowledged) {
             res.status(205).json(result);
         } else {
-            next(response.error || new Error('We seem to have a problem with your submission.'))
+            next(result.error || new Error('We seem to have a problem with your submission.'))
         };
     } catch (error) {
-        next(err)
+        next(error)
     }
 }
 
@@ -212,10 +213,10 @@ const deleteUsername = async (req, res, next) => {
         if (result.acknowledged) {
             res.status(206).json(result);
         } else {
-            next(response.error || new Error('We seem to have a problem with your submission.'))
+            next(result.error || new Error('We seem to have a problem with your submission.'))
         };
     } catch (error) {
-        next(err)
+        next(error)
     }
 }
 

@@ -1,6 +1,9 @@
+// @ts-ignore
 const express = require('express');
+// @ts-ignore
 const router = express.Router();
 const scripture = require('../controllers/scripture');
+// @ts-ignore
 const val = require('../middleware/scripture-val');
 
 router.get('/', scripture.getScriptures);

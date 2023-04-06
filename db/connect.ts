@@ -1,4 +1,6 @@
+// @ts-ignore
 const dotenv = require('dotenv');
+// @ts-ignore
 const { MongoClient } = require('mongodb');
 
 let _db;

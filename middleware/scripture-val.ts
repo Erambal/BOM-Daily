@@ -1,3 +1,4 @@
+// @ts-ignore
 const validator = require('../helper/model-validation');
 const validateScripture = async (req, res, next) => {
     const validationRule = {

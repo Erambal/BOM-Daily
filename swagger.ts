@@ -73,11 +73,10 @@ const doc = {
       code: 'color',
       options: ['#2196F3', '#ffffff']
     }
-  },
-  schemes: ['https']
+  }
 };
 
 const outputFile = './swagger.json';
-const endpointsFiles = ['./routes/index.js'];
+const endpointsFiles = ['./routes/index.ts'];
 
 swaggerAutogen(outputFile, endpointsFiles, doc);

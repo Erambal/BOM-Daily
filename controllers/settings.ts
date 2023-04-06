@@ -1,6 +1,8 @@
+// @ts-ignore
 const client = require('../db/connect');
+// @ts-ignore
 const ObjectId = require('mongodb').ObjectId;
-
+// @ts-ignore
 const getCollection = () => client.getDb().db("cse341").collection('settings');
 
 const getAll = async (req, res, next) => {

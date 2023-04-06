@@ -1,6 +1,8 @@
+// @ts-ignore
 const client = require('../db/connect');
+// @ts-ignore
 const ObjectId = require('mongodb').ObjectId;
-
+// @ts-ignore
 const getCollection = () => client.getDb().db("cse341").collection('scriptures');
 
 const getScriptures = async (req, res, next) => {
@@ -75,7 +77,11 @@ const createScripture = async(req, res, next) => {
 const updateScripture = async (req, res, next) => {
     // #swagger.tags = ['Scripture']
     // #swagger.description = 'Updates a scripture.  Accessible only by admin user.'
+    
     try {
+        //The "setting" variable on line 98 wasn't defined so I've added a setting pulling from param
+        const setting = new ObjectId(req.params.id);
+
         const scriptureId = new ObjectId(req.params.id);
         // be aware of updateOne if you only want to update specific fields
         const scripture = {
