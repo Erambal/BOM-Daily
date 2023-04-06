@@ -1,6 +1,6 @@
 // req's
 const dbConnect = require('../db/connect');
-const ObjectId = require('mongodb').ObjectId;
+const ObjId = require('mongodb').ObjectId;
 
 
 //functions
@@ -50,7 +50,7 @@ const postUser = async (req, res, next) => {
     if (result.acknowledged) {
         res.status(200).json(result);
     } else {
-        res.status(500).json(response.error || 'We seem to have a problem with your submission.')
+        res.status(500).json(res.error || 'We seem to have a problem with your submission.')
     };
 
 }
@@ -58,7 +58,7 @@ const postUser = async (req, res, next) => {
 const putUser = async (req, res, next) => {
     // #swagger.tags = ['User']
     // #swagger.description = 'Updates a user. Admin user can update any user.'
-    const id = new ObjectId(req.params.id)
+    const id = new ObjId(req.params.id)
     const updateUser = {
         //THIS IS A PLACEHOLDER, WE NEED TO UPDATE THIS
         username: req.body.username,
@@ -85,7 +85,7 @@ const putUser = async (req, res, next) => {
     if (result.acknowledged) {
         res.status(201).json(result);
     } else {
-        res.status(501).json(response.error || 'We seem to have a problem with your submission.')
+        res.status(501).json(res.error || 'We seem to have a problem with your submission.')
     };
 
 }
@@ -95,13 +95,13 @@ const getUserId = async (req, res, next) => {
     // #swagger.tags = ['User']
     // #swagger.description = 'Gets a single user by id. Admin user can get any user.'
 
-    const id = new ObjectId(req.params.id);
+    const id = new ObjId(req.params.id);
     
     const result = await dbConnect.getDb().db('cse341').collection('user').findOne(id);
     if (result.acknowledged) {
         res.status(202).json(result);
     } else {
-        res.status(502).json(response.error || 'We seem to have a problem with your submission.')
+        res.status(502).json(res.error || 'We seem to have a problem with your submission.')
     };
 
 }
@@ -110,13 +110,13 @@ const getUserId = async (req, res, next) => {
 const deleteUserId = async (req, res, next) => {
     // #swagger.tags = ['User']
     // #swagger.description = 'Deletes users listed in an array of user IDs. Accessible only by admin user.'
-    const id = new ObjectId(req.params.id);
+    const id = new ObjId(req.params.id);
     const result = await dbConnect.getDb().db('cse341').collection('user').deleteOne(id);
 
     if (result.acknowledged) {
         res.status(203).json(result);
     } else {
-        res.status(503).json(response.error || 'We seem to have a problem with your submission.')
+        res.status(503).json(res.error || 'We seem to have a problem with your submission.')
     };
     
 }
@@ -125,7 +125,7 @@ const deleteUserId = async (req, res, next) => {
 const getUsername = async (req, res, next) => {
     // #swagger.tags = ['Username']
     // #swagger.description = 'Gets usernames listed in an array of user profiles.'
-    const username = new ObjectId(req.params.username);
+    const username = new ObjId(req.params.username);
 
     const result = await dbConnect.getDb.db('cse341').collection('user').findOne(username);
     console.log(result);
@@ -133,7 +133,7 @@ const getUsername = async (req, res, next) => {
     if (result.acknowledged) {
         res.status(204).json(result);
     } else {
-        res.status(504).json(response.error || 'We seem to have a problem with your submission.')
+        res.status(504).json(res.error || 'We seem to have a problem with your submission.')
     };
     
 }
@@ -143,7 +143,7 @@ const putUsername = async (req, res, next) => {
     // #swagger.tags = ['Username']
     // #swagger.description = 'Update a users Username.'
 
-    const id = new ObjectId(req.params.id);
+    const id = new ObjId(req.params.id);
     const updateUsername = new ObjectId(req.params.username);
     const updateUser = {
         //THIS IS A PLACEHOLDER, WE NEED TO UPDATE THIS
@@ -167,12 +167,12 @@ const putUsername = async (req, res, next) => {
         // } 
     };
 
-    const result = await dbConnect.getDb().db('cse341').collection('user').replaceOne({_id: id}, {username: username}, updateUser);
+    const result = await dbConnect.getDb().db('cse341').collection('user').replaceOne({_id: id}, {username: updateUsername}, updateUser);
     
     if (result.acknowledged) {
         res.status(205).json(result);
     } else {
-        res.status(505).json(response.error || 'We seem to have a problem with your submission.')
+        res.status(505).json(res.error || 'We seem to have a problem with your submission.')
     };
 
 }
@@ -181,14 +181,14 @@ const putUsername = async (req, res, next) => {
 const deleteUsername = async (req, res, next) => {
     // #swagger.tags = ['Username']
     // #swagger.description = 'Deletes users based on username'
-    const username = new ObjectId(req.params.username);
+    const username = new ObjId(req.params.username);
 
     const result = await dbConnect.getDb().db('cse341').collection('user').replaceOne(username);
      
     if (result.acknowledged) {
         res.status(206).json(result);
     } else {
-        res.status(506).json(response.error || 'We seem to have a problem with your submission.')
+        res.status(506).json(res.error || 'We seem to have a problem with your submission.')
     };
 }
 

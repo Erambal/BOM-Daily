@@ -5,10 +5,10 @@
   "main": "app.js",
   "scripts": {
     "test": "node node_modules/.bin/jest --coverage",
-    "start": "nodemon app.js",
+    "start": "nodemon app.ts",
     "lint": "eslint .",
     "lint:fix": "eslint --fix",
-    "swag-gen": "node swagger.js"
+    "swag-gen": "node swagger.ts"
   },
   "jest": {
     "preset": "@shelf/jest-mongodb"
@@ -32,6 +32,7 @@
   "devDependencies": {
     "jest": "^29.5.0",
     "nodemon": "^2.0.20",
-    "swagger-autogen": "^2.23.1"
+    "swagger-autogen": "^2.23.1",
+    "typescript": "^5.0.3"
   }
 }
