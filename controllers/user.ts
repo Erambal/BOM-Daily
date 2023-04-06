@@ -33,8 +33,8 @@ const postUser = async (req, res, next) => {
         const newUser = {
             //THIS IS A PLACEHOLDER, WE NEED TO UPDATE THIS
             username: req.body.username,
-            fname: req.body.fName,
-            lname: req.body.lName,
+            fname: req.body.fname,
+            lname: req.body.lname,
             street: req.body.street,
             city: req.body.city,
             state: req.body.state,
@@ -71,8 +71,8 @@ const putUser = async (req, res, next) => {
         const updateUser = {
             //THIS IS A PLACEHOLDER, WE NEED TO UPDATE THIS
             username: req.body.username,
-            fname: req.body.fName,
-            lname: req.body.lName,
+            fname: req.body.fname,
+            lname: req.body.lname,
             street: req.body.street,
             city: req.body.city,
             state: req.body.state,
@@ -170,8 +170,8 @@ const putUsername = async (req, res, next) => {
         const updateUser = {
             //THIS IS A PLACEHOLDER, WE NEED TO UPDATE THIS
             username: updateUsername,
-            fname: req.body.fName,
-            lname: req.body.lName,
+            fname: req.body.fname,
+            lname: req.body.lname,
             street: req.body.street,
             city: req.body.city,
             state: req.body.state,
