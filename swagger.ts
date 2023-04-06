@@ -16,23 +16,7 @@ const doc = {
   //   {
   //     'name': 'Users',
   //     // 'description': 'Endpoints'
-  //   },
-  //   {
-  //     'name': 'User',
-  //     // 'description': 'Endpoints'
-  //   },
-  //   {
-  //     'name': 'Scriptures',
-  //     'description': 'Endpoints.'
-  //   },
-  //   {
-  //     'name': 'Scripture',
-  //     // 'description': 'Endpoints'
-  //   },
-  //   // {
-  //   //   'name': 'Settings/Font',
-  //   //   'description': 'Endpoints'
-  //   // }
+  //   }
   // ],
   definitions: {
     user: {
