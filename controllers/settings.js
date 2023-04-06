@@ -1,7 +1,7 @@
-const clientSettings = require('../db/connect');
-const settingsId = require('mongodb').ObjectId;
+const client = require('../db/connect');
+const ObjectId = require('mongodb').ObjectId;
 
-const getSettings = () => clientSettings.getDb().db("cse341").collection('settings');
+const getCollection = () => client.getDb().db("cse341").collection('settings');
 
 const getAll = async (req, res, next) => {
     // #swagger.tags = ['Settings']
@@ -20,7 +20,7 @@ const getAll = async (req, res, next) => {
             }
         }
         console.log(filters);
-        const result = await getSettings().find(filters);
+        const result = await getCollection().find(filters);
         result.toArray().then((lists) => {
             res.setHeader('Content-Type', 'application/json');
             res.status(200).json(lists);
@@ -35,8 +35,8 @@ const getSingle = async (req, res, next) => {
     // #swagger.description = 'Gets a single Setting by id.'
 
     try {
-        const settingId = new settingsId(req.params.id);
-        const result = await getSettings().find({
+        const settingId = new ObjectId(req.params.id);
+        const result = await getCollection().find({
             _id: settingId
         });
         result.toArray().then((lists) => {
@@ -58,7 +58,7 @@ const createSetting = async (req, res, next) => {
             code: req.body.code,
             options: req.body.options
         };
-        const response = await getSettings().insertOne(setting);
+        const response = await getCollection().insertOne(setting);
         if (response.acknowledged) {
             res.status(201).json(response);
         } else {
@@ -74,14 +74,14 @@ const updateSetting = async (req, res, next) => {
     // #swagger.description = 'Updates existing Setting.'
 
     try {
-        const settingId = new settingsId(req.params.id);
+        const settingId = new ObjectId(req.params.id);
         // be aware of updateOne if you only want to update specific fields
         const setting = {
             name: req.body.name,
             code: req.body.code,
             options: req.body.options
         };
-        const response = await getSettings()
+        const response = await getCollection()
             .replaceOne({
                 _id: settingId
             }, setting);
@@ -101,9 +101,9 @@ const deleteSetting = async (req, res, next) => {
     // #swagger.description = 'Deletes existing Setting.'
 
     try {
-        const settingId = new settingsId(req.params.id);
-        const response = await getSettings()
-            .remove({
+        const settingId = new ObjectId(req.params.id);
+        const response = await getCollection()
+            .deleteOne({
                 _id: settingId
             }, true);
         console.log(response);

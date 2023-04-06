@@ -75,12 +75,6 @@ const createScripture = async(req, res, next) => {
 const updateScripture = async (req, res, next) => {
     // #swagger.tags = ['Scripture']
     // #swagger.description = 'Updates a scripture.  Accessible only by admin user.'
-
-    //Aaron ts conversion edit:
-                // "setting" on line 100 was not defined so I defined it here. We'll
-                // need to make sure that it's something we pass in the params.
-    const setting = new ObjectId(req.params.setting);
-    
     try {
         const scriptureId = new ObjectId(req.params.id);
         // be aware of updateOne if you only want to update specific fields
@@ -120,9 +114,10 @@ const deleteScripture = async (req, res,next) => {
     // #swagger.tags = ['Scripture']
     // #swagger.description = 'Deletes a single scripture by id.  Accessible only by admin user.'
     try {
+        console.log(`deleting ${req.params.id}`)
         const scripture = new ObjectId(req.params.id);
         const response = await getCollection()
-            .remove({
+            .deleteOne({
                 _id: scripture
             }, true);
         console.log(response);
@@ -136,5 +131,10 @@ const deleteScripture = async (req, res,next) => {
     }
 };
 
-// module.exports = { getScriptures, getScripture, createScripture, updateScripture, deleteScriptures, deleteScripture };
-module.exports = { getScriptures, getScriptureById, createScripture, updateScripture, deleteScripture };
+module.exports = { 
+    getScriptures, 
+    getScriptureById, 
+    createScripture, 
+    updateScripture, 
+    deleteScripture
+};
