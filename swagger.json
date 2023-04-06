@@ -91,9 +91,6 @@
           },
           "412": {
             "description": "Precondition Failed"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         }
       },
@@ -152,9 +149,6 @@
           },
           "412": {
             "description": "Precondition Failed"
-          },
-          "501": {
-            "description": "Not Implemented"
           }
         }
       }
@@ -176,9 +170,6 @@
         "responses": {
           "202": {
             "description": "Accepted"
-          },
-          "502": {
-            "description": "Bad Gateway"
           }
         }
       },
@@ -243,9 +234,6 @@
           },
           "412": {
             "description": "Precondition Failed"
-          },
-          "501": {
-            "description": "Not Implemented"
           }
         }
       },
@@ -265,9 +253,6 @@
         "responses": {
           "203": {
             "description": "Non-Authoritative Information"
-          },
-          "503": {
-            "description": "Service Unavailable"
           }
         }
       }
@@ -289,9 +274,6 @@
         "responses": {
           "204": {
             "description": "No Content"
-          },
-          "504": {
-            "description": "Gateway Timeout"
           }
         }
       },
@@ -350,9 +332,6 @@
         "responses": {
           "205": {
             "description": "Reset Content"
-          },
-          "505": {
-            "description": "HTTP Version Not Supported"
           }
         }
       },
@@ -372,9 +351,6 @@
         "responses": {
           "206": {
             "description": "Partial Content"
-          },
-          "506": {
-            "description": "Variant Also Negotiates"
           }
         }
       }
@@ -438,9 +414,6 @@
         "responses": {
           "201": {
             "description": "Created"
-          },
-          "501": {
-            "description": "Not Implemented"
           }
         }
       }
@@ -620,7 +593,10 @@
         }
       },
       "post": {
-        "description": "",
+        "tags": [
+          "Settings"
+        ],
+        "description": "Create a new Setting.",
         "parameters": [
           {
             "name": "body",
@@ -628,19 +604,13 @@
             "schema": {
               "type": "object",
               "properties": {
-                "color": {
+                "name": {
                   "example": "any"
                 },
-                "fontSize": {
+                "code": {
                   "example": "any"
                 },
-                "timeZone": {
-                  "example": "any"
-                },
-                "topics": {
-                  "example": "any"
-                },
-                "settingId": {
+                "options": {
                   "example": "any"
                 }
               }
@@ -681,7 +651,10 @@
         }
       },
       "put": {
-        "description": "",
+        "tags": [
+          "Settings"
+        ],
+        "description": "Updates existing Setting.",
         "parameters": [
           {
             "name": "id",
@@ -695,19 +668,13 @@
             "schema": {
               "type": "object",
               "properties": {
-                "color": {
+                "name": {
                   "example": "any"
                 },
-                "fontSize": {
+                "code": {
                   "example": "any"
                 },
-                "timeZone": {
-                  "example": "any"
-                },
-                "topics": {
-                  "example": "any"
-                },
-                "settingId": {
+                "options": {
                   "example": "any"
                 }
               }
@@ -724,7 +691,10 @@
         }
       },
       "delete": {
-        "description": "",
+        "tags": [
+          "Settings"
+        ],
+        "description": "Deletes existing Setting.",
         "parameters": [
           {
             "name": "id",
@@ -739,6 +709,128 @@
           },
           "500": {
             "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/user-favorites/": {
+      "get": {
+        "tags": [
+          "User Favorites"
+        ],
+        "description": "Gets users listed in an array of user IDs. Accessible only by admin user",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "User Favorites"
+        ],
+        "description": "Creates a favoritee. Accessible only by admin user.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "user_id": {
+                  "example": "any"
+                },
+                "scripture_id": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/user-favorites/{id}": {
+      "get": {
+        "tags": [
+          "User Favorites"
+        ],
+        "description": "Gets a single favorite by id.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "User Favorites"
+        ],
+        "description": "Updates a favorite. Accessible only by admin user.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "user_id": {
+                  "example": "any"
+                },
+                "scripture_id": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "User Favorites"
+        ],
+        "description": "Deletes a single favorite by id. Accessible only by admin user.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
           }
         }
       }
@@ -833,13 +925,29 @@
     "scripture": {
       "type": "object",
       "properties": {
-        "reference": {
+        "volume": {
+          "type": "string",
+          "example": "Book of Mormon"
+        },
+        "book": {
+          "type": "string",
+          "example": "1 Nephi"
+        },
+        "chapter": {
+          "type": "number",
+          "example": 1
+        },
+        "verse": {
+          "type": "number",
+          "example": 1
+        },
+        "verse_title": {
           "type": "string",
           "example": "1 Nephi 1:1"
         },
-        "text": {
+        "scripture_text": {
           "type": "string",
-          "example": "I, Nephi, ..."
+          "example": "I, Nephi, having been born of goodly parents..."
         },
         "link": {
           "type": "string",
@@ -852,7 +960,7 @@
         "topic": {
           "type": "array",
           "example": [
-            "Parents"
+            "Faith"
           ],
           "items": {
             "type": "string"
@@ -863,31 +971,19 @@
     "settings": {
       "type": "object",
       "properties": {
-        "font": {
-          "type": "array",
-          "example": [
-            "Roboto",
-            "Lato"
-          ],
-          "items": {
-            "type": "string"
-          }
+        "name": {
+          "type": "string",
+          "example": "Color"
         },
-        "color": {
+        "code": {
+          "type": "string",
+          "example": "color"
+        },
+        "options": {
           "type": "array",
           "example": [
             "#2196F3",
             "#ffffff"
-          ],
-          "items": {
-            "type": "string"
-          }
-        },
-        "topic": {
-          "type": "array",
-          "example": [
-            "Parents",
-            "Prayer"
           ],
           "items": {
             "type": "string"

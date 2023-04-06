@@ -8,21 +8,24 @@ const ObjId = require('mongodb').ObjectId;
 // -------------------------------------------getAllUsers - Return all Users Collection
 const getAllUsers = async (req, res, next) => {
      // #swagger.tags = ['User']
-//     // #swagger.description = 'Gets users listed in an array of user IDs. Accessible only by admin user'
-    const result = await dbConnect.getDb().db('cse341').collection('user').find();
-
-    result.toArray((err, users) => {
-        if(err) {
-            res.status(400).json({message: err})
-        }
-        res.setHeader('Content-Type', 'application/json');
-        res.status(200).json(users);
-    });
+     // #swagger.description = 'Gets users listed in an array of user IDs. Accessible only by admin user'
+    try {
+        const result = await dbConnect.getDb().db('cse341').collection('user').find();
+    
+        result.toArray((err, users) => {
+            if(err) {
+                res.status(400).json({message: err})
+            }
+            res.setHeader('Content-Type', 'application/json');
+            res.status(200).json(users);
+        });
+    } catch (error) {
+        next(err)
+    }
 }
 
 // -------------------------------------------postUser - Add individual user to Users collection
 const postUser = async (req, res, next) => {
-    const newUser = {
     // #swagger.tags = ['User']
     // #swagger.description = 'Creates a user. Admin user can create any user.'
         //THIS IS A PLACEHOLDER, WE NEED TO UPDATE THIS
@@ -53,6 +56,15 @@ const postUser = async (req, res, next) => {
         res.status(500).json(res.error || 'We seem to have a problem with your submission.')
     };
 
+        const result = await dbConnect.getDb().db('cse341').collection('user').insertOne(newUser);
+        if (result.acknowledged) {
+            res.status(200).json(result);
+        } else {
+            next(res.error || new Error('We seem to have a problem with your submission.'))
+        };
+    } catch (error) {
+        next(err)
+    }
 }
 // -------------------------------------------putUser - Update individual user by their ID
 const putUser = async (req, res, next) => {
@@ -142,6 +154,30 @@ const getUsername = async (req, res, next) => {
 const putUsername = async (req, res, next) => {
     // #swagger.tags = ['Username']
     // #swagger.description = 'Update a users Username.'
+    try{
+        const id = new ObjectId(req.params.id);
+        const updateUsername = new ObjectId(req.params.username);
+        const updateUser = {
+            //THIS IS A PLACEHOLDER, WE NEED TO UPDATE THIS
+            username: updateUsername,
+            fname: req.body.fName,
+            lname: req.body.lName,
+            street: req.body.street,
+            city: req.body.city,
+            state: req.body.state,
+            zipcode: req.body.zipcode,
+            email: req.body.email,
+            phone: req.body.phone,
+            img: req.body.img,  
+            admin: req.body.admin,
+            // setting: {
+            //     color: req.body.setting.color,
+            //     font: req.body.setting.font,
+            //     time: req.body.setting.time,
+            //     topic: req.body.setting.topic,
+            //     favorite_list: req.body.setting.favorite_list
+            // } 
+        };
 
     const id = new ObjId(req.params.id);
     const updateUsername = new ObjectId(req.params.username);
@@ -175,7 +211,7 @@ const putUsername = async (req, res, next) => {
         res.status(505).json(res.error || 'We seem to have a problem with your submission.')
     };
 
-}
+}}
 
 // deleteUsername
 const deleteUsername = async (req, res, next) => {
