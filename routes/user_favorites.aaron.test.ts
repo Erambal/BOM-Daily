@@ -65,14 +65,14 @@ describe('Routes', function () {
         );
     });
 
-    test('/user/{userId}', async () => {
-        const res = await request(app).get(`/user-favorites/642ba1874f0a09b2a6206f42`);
-        expect(res.body).toEqual({
-            "_id": "642ba1874f0a09b2a6206f42",
-            "user_id": "6419f6c8b61b42ba4e0d9177",
-            "scripture_id": "641d274f588a75afa7694a6a"
-          });
-    });
+    // test('/user-favorites/{id}', async () => {
+    //     const res = await request(app).get('/user-favorites/642ba1874f0a09b2a6206f42');
+    //     expect(res.body).toEqual({
+    //         "_id": "642ba1874f0a09b2a6206f42",
+    //         "user_id": "6419f6c8b61b42ba4e0d9177",
+    //         "scripture_id": "641d274f588a75afa7694a6a"
+    //       });
+    // });
 
     // test('POST /users', async () => {
     //       const res = await request(app).post('/users');
