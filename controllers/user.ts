@@ -146,7 +146,7 @@ const getUsername = async (req, res, next) => {
     try{
         const username = new ObjectId(req.params.username);
     
-        const result = await dbConnect.getDb.db('cse341').collection('user').findOne(username);
+        const result = await dbConnect.getDb().db('cse341').collection('user').findOne(username);
         console.log(result);
     
         if (result.acknowledged) {
