@@ -110,7 +110,7 @@ const getUserId = async (req, res, next) => {
     try {
         const id = new ObjectId(req.params.id);
         
-        const result = await dbConnect.getDb().db('cse341').collection('user').findOne(id);
+        const result = await dbConnect.getDb().db('cse341').collection('user').findOne({_id: id});
         if (result.acknowledged) {
             res.status(202).json(result);
         } else {
