@@ -20,7 +20,7 @@ router.put('/:id', requiresAuth(),  val.valUser, useControl.putUser);
 router.delete('/:id', requiresAuth(), useControl.deleteUserId);
 
 //-------------------------------------- userName
-router.get('/userprofile/:username', useControl.getUsername);
+router.get('/userprofile/:username', requiresAuth(), useControl.getUsername);
 router.put('/userprofile/:username', requiresAuth(), useControl.putUsername);
 router.delete('/userprofile/:username', requiresAuth(), useControl.deleteUsername);
 
