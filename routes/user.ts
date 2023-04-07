@@ -21,11 +21,11 @@ router.delete('/:id', requiresAuth(), useControl.deleteUserId);
 
 //-------------------------------------- userName
 router.get('/userprofile/:username', requiresAuth(), useControl.getUsername);
-router.put('/userprofile/:username', requiresAuth(), useControl.putUsername);
-router.delete('/userprofile/:username', requiresAuth(), useControl.deleteUsername);
+// router.put('/userprofile/:username', requiresAuth(), useControl.putUsername);
+// router.delete('/userprofile/:username', requiresAuth(), useControl.deleteUsername);
 
 //-------------------------------------- imageUpload
-router.post('/userprofile/:id/uploadImage', requiresAuth(), useControl.putUser);
+//router.post('/userprofile/:id/uploadImage', requiresAuth(), useControl.putUser);
 
 
 //-------------------------------------- login - OAuth
