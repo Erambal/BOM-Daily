@@ -12,7 +12,7 @@ const app = new express();
 //-----------------------------------------------------------------------------
 
 app.get('/user/642ee6ac484ed2d1216d5818', (req, res) => {
-    res.status(200).json({ 
+    res.status(200).json({
         username: 'johndoughnut',
         fname: 'John',
         lname: 'Doe',
@@ -25,7 +25,7 @@ app.get('/user/642ee6ac484ed2d1216d5818', (req, res) => {
 
 app.get('/user', (req, res) => {
     res.status(200).json([
-        { 
+        {
             username: 'johndoughnut',
             fname: 'John',
             lname: 'Doe',
@@ -55,6 +55,27 @@ app.post('/user', (req, res) => {
     )
 });
 
+app.put('/user', (req, res) => {
+    res.status(200).json(
+        {
+            "acknowledged": true,
+            "modifiedCount": 1,
+            "upsertedId": null,
+            "upsertedCount": 0,
+            "matchedCount": 1
+        }
+    )
+});
+
+app.delete('/user', (req, res) => {
+    res.status(200).json(
+        {
+            "acknowledged": true,
+            "deletedCount": 0
+        }
+    )
+});
+
 //-----------------------------------------------------------------------------
 // Tests
 //-----------------------------------------------------------------------------
@@ -64,7 +85,7 @@ describe('Routes', function () {
     test('/user', async () => {
         const res = await request(app).get('/user');
         expect(res.body).toEqual([
-            { 
+            {
                 username: 'johndoughnut',
                 fname: 'John',
                 lname: 'Doe',
@@ -87,7 +108,7 @@ describe('Routes', function () {
 
     test('/user/{userId}', async () => {
         const res = await request(app).get(`/user/642ee6ac484ed2d1216d5818`);
-        expect(res.body).toEqual({ 
+        expect(res.body).toEqual({
             username: 'johndoughnut',
             fname: 'John',
             lname: 'Doe',
@@ -98,16 +119,62 @@ describe('Routes', function () {
         });
     });
 
-    // test('POST /users', async () => {
-    //       const res = await request(app).post('/users');
-    //     //   send({name: 'john'});
-    //     //   set('Accept', 'application/json');
-    //       expect(res.status).toBe(200));
-    //       expect(res.body).toEqual(
-    //         {
-    //           acknowledged: true,
-    //           insertedId: "642f7cccee86860fb5863c7d"
-    //         }
-    //       )
-    // });
+    test('POST /user', async () => {
+          const res = await request(app)
+            .post('/user')
+            .send({fname: 'john'})
+            .set('Accept', 'application/json');
+          expect(res.status).toBe(200);
+          expect(res.body).toEqual(
+            {
+              acknowledged: true,
+              insertedId: "642f7cccee86860fb5863c7d"
+            }
+          )
+    });
+
+    test('POST /user', async () => {
+        const res = await request(app)
+          .post('/user')
+          .send({fname: 'john'})
+          .set('Accept', 'application/json');
+        expect(res.status).toBe(200);
+        expect(res.body).toEqual(
+          {
+            acknowledged: true,
+            insertedId: "642f7cccee86860fb5863c7d"
+          }
+        )
+    });
+
+    test('PUT /user', async () => {
+        const res = await request(app)
+            .put('/user')
+            .send({fname: 'john'})
+            .set('Accept', 'application/json');
+        expect(res.status).toBe(200);
+        expect(res.body).toEqual(
+            {
+                "acknowledged": true,
+                "modifiedCount": 1,
+                "upsertedId": null,
+                "upsertedCount": 0,
+                "matchedCount": 1
+            }
+        )
+    });
+
+    test('DELETE /user', async () => {
+        const res = await request(app)
+            .delete('/user')
+            .send({fname: '642f7cccee86860fb5863c7d'})
+            .set('Accept', 'application/json');
+        expect(res.status).toBe(200);
+        expect(res.body).toEqual(
+            {
+                "acknowledged": true,
+                "deletedCount": 0
+            }
+        )
+    });
 });
