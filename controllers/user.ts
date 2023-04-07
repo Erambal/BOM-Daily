@@ -126,7 +126,7 @@ const deleteUserId = async (req, res, next) => {
     // #swagger.tags = ['User']
     // #swagger.description = 'Deletes users listed in an array of user IDs. Accessible only by admin user.'
     try{
-        const id = new ObjectId(req.params.id);
+        const id = {_id: new ObjectId(req.params.id)};
         const result = await dbConnect.getDb().db('cse341').collection('user').deleteOne(id);
 
         if (result.acknowledged) {

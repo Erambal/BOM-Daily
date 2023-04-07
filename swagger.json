@@ -51,10 +51,10 @@
                 "username": {
                   "example": "any"
                 },
-                "fName": {
+                "fname": {
                   "example": "any"
                 },
-                "lName": {
+                "lname": {
                   "example": "any"
                 },
                 "street": {
@@ -109,10 +109,10 @@
                 "username": {
                   "example": "any"
                 },
-                "fName": {
+                "fname": {
                   "example": "any"
                 },
-                "lName": {
+                "lname": {
                   "example": "any"
                 },
                 "street": {
@@ -144,8 +144,8 @@
           }
         ],
         "responses": {
-          "201": {
-            "description": "Created"
+          "200": {
+            "description": "OK"
           },
           "412": {
             "description": "Precondition Failed"
@@ -168,8 +168,8 @@
           }
         ],
         "responses": {
-          "202": {
-            "description": "Accepted"
+          "200": {
+            "description": "OK"
           }
         }
       },
@@ -194,10 +194,10 @@
                 "username": {
                   "example": "any"
                 },
-                "fName": {
+                "fname": {
                   "example": "any"
                 },
-                "lName": {
+                "lname": {
                   "example": "any"
                 },
                 "street": {
@@ -229,8 +229,8 @@
           }
         ],
         "responses": {
-          "201": {
-            "description": "Created"
+          "200": {
+            "description": "OK"
           },
           "412": {
             "description": "Precondition Failed"
@@ -251,8 +251,8 @@
           }
         ],
         "responses": {
-          "203": {
-            "description": "Non-Authoritative Information"
+          "200": {
+            "description": "OK"
           }
         }
       }
@@ -272,8 +272,8 @@
           }
         ],
         "responses": {
-          "204": {
-            "description": "No Content"
+          "200": {
+            "description": "OK"
           }
         }
       },
@@ -295,10 +295,10 @@
             "schema": {
               "type": "object",
               "properties": {
-                "fName": {
+                "fname": {
                   "example": "any"
                 },
-                "lName": {
+                "lname": {
                   "example": "any"
                 },
                 "street": {
@@ -330,8 +330,8 @@
           }
         ],
         "responses": {
-          "205": {
-            "description": "Reset Content"
+          "200": {
+            "description": "OK"
           }
         }
       },
@@ -349,8 +349,8 @@
           }
         ],
         "responses": {
-          "206": {
-            "description": "Partial Content"
+          "200": {
+            "description": "OK"
           }
         }
       }
@@ -377,10 +377,10 @@
                 "username": {
                   "example": "any"
                 },
-                "fName": {
+                "fname": {
                   "example": "any"
                 },
-                "lName": {
+                "lname": {
                   "example": "any"
                 },
                 "street": {
@@ -412,8 +412,8 @@
           }
         ],
         "responses": {
-          "201": {
-            "description": "Created"
+          "200": {
+            "description": "OK"
           }
         }
       }
