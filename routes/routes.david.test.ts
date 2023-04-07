@@ -92,17 +92,15 @@ describe('Routes', function () {
         });
     });
 
-    // test('POST /scriptures', async () => {
-    //       const res = await request(app).post('/scriptures');
-    //     //   send({name: 'john'});
-    //     //   set('Accept', 'application/json');
-    //       expect(res.status).toBe(200));
-    //       expect(res.body).toEqual(
-    //         {
-    //           acknowledged: true,
-    //           insertedId: "642f7cccee86860fb5863c7d"
-    //         }
-    //       )
-    // });
+    test('POST /scriptures', async () => {
+          const res = await request(app).post('/scriptures');
+          expect(res.status).toBe(200);
+          expect(res.body).toEqual(
+            {
+              acknowledged: true,
+              insertedId: "641d26dc588a75afa7694a28"
+            }
+          )
+    });
     
 });
