@@ -93,64 +93,6 @@
             "description": "Precondition Failed"
           }
         }
-      },
-      "put": {
-        "tags": [
-          "User"
-        ],
-        "description": "Updates a user. Admin user can update any user.",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "username": {
-                  "example": "any"
-                },
-                "fname": {
-                  "example": "any"
-                },
-                "lname": {
-                  "example": "any"
-                },
-                "street": {
-                  "example": "any"
-                },
-                "city": {
-                  "example": "any"
-                },
-                "state": {
-                  "example": "any"
-                },
-                "zipcode": {
-                  "example": "any"
-                },
-                "email": {
-                  "example": "any"
-                },
-                "phone": {
-                  "example": "any"
-                },
-                "img": {
-                  "example": "any"
-                },
-                "admin": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "412": {
-            "description": "Precondition Failed"
-          }
-        }
       }
     },
     "/user/{id}": {

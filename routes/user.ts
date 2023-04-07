@@ -12,7 +12,7 @@ const val = require('../middleware/userVal');
 //-------------------------------------- user
 router.get('/', requiresAuth(), useControl.getAllUsers)
 router.post('/', requiresAuth(), val.valUser, useControl.postUser);
-router.put('/', requiresAuth(),  val.valUser, useControl.putUser);
+// router.put('/', requiresAuth(),  val.valUser, useControl.putUser);
 
 //-------------------------------------- userId
 router.get('/:id', requiresAuth(), useControl.getUserId);
