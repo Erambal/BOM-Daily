@@ -80,8 +80,6 @@ const updateScripture = async (req, res, next) => {
     
     try {
         //The "setting" variable on line 98 wasn't defined so I've added a setting pulling from param
-        const setting = new ObjectId(req.params.id);
-
         const scriptureId = new ObjectId(req.params.id);
         // be aware of updateOne if you only want to update specific fields
         const scripture = {
@@ -97,7 +95,7 @@ const updateScripture = async (req, res, next) => {
         const response = await getCollection()
             .replaceOne({
                 _id: scriptureId
-            }, setting);
+            }, scripture);
         console.log(response);
         if (response.modifiedCount > 0) {
             res.status(204).send();
